@@ -1,4 +1,6 @@
 module OpenAuth2
+
+  # Used to get Access/Refresh tokens from OAuth server.
   class Token
     extend DelegateToConfig
     include Connection

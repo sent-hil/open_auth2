@@ -1,4 +1,6 @@
 module OpenAuth2
+
+  # Used to make get/post requests to OAuth server.
   class Client
     extend DelegateToConfig
     include Connection

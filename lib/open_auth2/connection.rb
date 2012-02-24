@@ -1,9 +1,8 @@
 module OpenAuth2
 
-  # Client/AccessToken use this to make the actual requests to OAuth
-  # server. Since some OAuth servers have seperate endpoints for
-  # authorization & api requests, we use @faraday_url to store that
-  # info.
+  # Client/Token use this to make the actual requests to OAuth server.
+  # Since some OAuth servers have seperate endpoints for authorization
+  # & api requests, we use @faraday_url to store that info.
   #
   module Connection
     def self.included(base)
