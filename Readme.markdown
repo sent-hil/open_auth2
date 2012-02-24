@@ -49,6 +49,7 @@ client.configure_connection do |c|
   c.response :logger
 end
 ```
+
 ## Requirements
 
   * ActiveSupport
