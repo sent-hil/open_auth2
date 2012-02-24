@@ -1,6 +1,7 @@
 module OpenAuth2
   class Client
     extend DelegateToConfig
+    include Connection
 
     # Use it to set @config. Will raise error if no @config or wrong
     # @config. We rely on Config for all Options info, so its important
@@ -29,6 +30,9 @@ module OpenAuth2
 
       raise NoConfigObject      unless @config
       raise UnknownConfigObject unless @config.is_a?(OpenAuth2::Config)
+
+      # endpoint is where the api requests are made
+      @faraday_url = endpoint
 
       self
     end

@@ -31,15 +31,19 @@ describe OpenAuth2::Client do
         subject = described_class.new('string')
       end.to raise_error(OpenAuth2::UnknownConfigObject)
     end
+
+    it 'sets @faraday_url' do
+      subject.faraday_url.should == 'https://graph.facebook.com'
+    end
+  end
+
+  subject do
+    described_class.new do |c|
+      c.config = config
+    end
   end
 
   context OpenAuth2::DelegateToConfig do
-    subject do
-      described_class.new do |c|
-        c.config = config
-      end
-    end
-
     it 'delegates Options getter methods' do
       subject.authorize_url.should == 'https://graph.facebook.com'
     end
@@ -49,6 +53,18 @@ describe OpenAuth2::Client do
       subject.authorize_url = url
 
       subject.authorize_url.should == url
+    end
+  end
+
+  context OpenAuth2::Connection do
+    it 'returns Faraday::Connection object' do
+      subject.connection.should be_a(Faraday::Connection)
+    end
+
+    it 'yields Faraday::Connection object' do
+      subject.connection do |f|
+        f.response :logger
+      end
     end
   end
 end
