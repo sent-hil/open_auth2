@@ -7,13 +7,22 @@ require_relative 'open_auth2/provider/facebook'
 require_relative 'open_auth2/provider/google'
 require_relative 'open_auth2/provider/four_square'
 
+require_relative 'open_auth2/delegate_to_config'
 require_relative 'open_auth2/config'
+require_relative 'open_auth2/client'
 
 require_relative 'open_auth2/version'
 
 module OpenAuth2
+
   # Raised in Config#provider= when user sets to provider not in
   # 'lib/open_auth2/provider/' or included by them manually.
   #
   class UnknownProvider < StandardError; end
+
+  # Raised in Client#new unless @config is set.
+  class NoConfigObject < StandardError; end
+
+  # Raised in Client#new unless @config is set to OpenAuth2::Config.
+  class UnknownConfigObject < StandardError; end
 end
