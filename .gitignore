@@ -5,3 +5,4 @@ pkg/*
 .DS_Store
 notes.rb
 coverage/*
+vendor/ruby
