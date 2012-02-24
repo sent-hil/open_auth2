@@ -41,6 +41,23 @@ module OpenAuth2
       self
     end
 
+    # Yields: self, use it to set/change config after #initialize.
+    # Mainly for setting access_token and refresh_token.
+    #
+    # Examples:
+    #   client = OpenAuth2::Client.new
+    #
+    #   client.configure do |c|
+    #     c.access_token  = :access_token
+    #     c.refresh_token = :refresh_token
+    #   end
+    #
+    # Returns: self.
+    #
+    def configure
+      yield self
+    end
+
     # Packages the info from config & passed in arguments into an url
     # that user has to visit to authorize this app.
     #

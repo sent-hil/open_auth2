@@ -64,6 +64,34 @@ client.build_code_url
 client.build_code_url(:scope => 'publish_stream')
 ```
 
+## Access token
+
+Access token is used to sign the request so the server can identify the client sending the request. If you already have an access_token, add it to the client with a block.
+
+```ruby
+access_token  = 'enter in your value'
+refresh_token = 'enter in your value'
+
+client.configure do |c|
+  c.access_token  = access_token
+
+  # optional, for fb its same as above
+  c.refresh_token = refresh_token
+end
+```
+
+## GET Access Token
+
+If you don't have an access token, we'll need to ask the server for it.
+
+`token#configure_connection` takes an block, just like `client#configure_connection`, which can be used to setup middleware like any other Faraday client.
+
+```ruby
+token = client.token
+token.configure_connection do |c|
+  c.response :logger
+end
+
 ## Requirements
 
   * ActiveSupport
