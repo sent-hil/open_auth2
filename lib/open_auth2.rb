@@ -9,9 +9,9 @@ require_relative 'open_auth2/provider/four_square'
 
 require_relative 'open_auth2/config'
 
-module OpenAuth2
-  VERSION = '0.0.1'
+require_relative 'open_auth2/version'
 
+module OpenAuth2
   # Raised in Config#provider= when user sets to provider not in
   # 'lib/open_auth2/provider/' or included by them manually.
   #
