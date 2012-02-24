@@ -60,6 +60,14 @@ module OpenAuth2
       self
     end
 
+    # We use this to get & refresh access/refresh tokens.
+    #
+    # Returns: Token object.
+    #
+    def token
+      @token ||= Token.new(config)
+    end
+
     # Examples:
     #   client.build_code_url
     #   #=> 'http://...'
@@ -75,10 +83,6 @@ module OpenAuth2
     #
     def build_code_url(params={})
       token.build_code_url(params)
-    end
-
-    def token
-      @token ||= Token.new(config)
     end
 
     private
