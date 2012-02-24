@@ -38,20 +38,24 @@ module OpenAuth2
     # Returns: String (url).
     #
     def build_code_url(params={})
-      body   = build_body(params)
+      url = URI::HTTPS.build(:host  => host,
+                             :path  => authorize_path,
+                             :query => encoded_body(params))
 
-      params = URI.encode_www_form(body)
-      host   = URI.parse(code_url).host
-      output = URI::HTTPS.build(:host => host,
-                                :path => authorize_path,
-                                :query => params)
-
-      output.to_s
+      url.to_s
     end
 
     private
 
-    def build_body(params)
+    def host
+      URI.parse(code_url).host
+    end
+
+    def encoded_body(params)
+      URI.encode_www_form(url_body_hash(params))
+    end
+
+    def url_body_hash(params)
       joined_scope = scope.join(',') if scope.respond_to?(:join)
 
       {
