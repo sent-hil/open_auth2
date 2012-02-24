@@ -10,7 +10,9 @@ require_relative 'open_auth2/provider/four_square'
 
 require_relative 'open_auth2/delegate_to_config'
 require_relative 'open_auth2/config'
+require_relative 'open_auth2/config'
 require_relative 'open_auth2/connection'
+require_relative 'open_auth2/token'
 require_relative 'open_auth2/client'
 
 require_relative 'open_auth2/version'
