@@ -14,10 +14,4 @@ describe 'Facebook Client' do
   end
 
   subject { OpenAuth2::Client.new(config) }
-
-  it 'builds code url' do
-    url = "https://www.facebook.com/dialog/oauth?response_type=code&client_id=225722397503003&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F&scope=offline_access%2Cpublish_stream"
-
-    subject.build_code_url.should == url
-  end
 end

@@ -66,7 +66,7 @@ client.build_code_url(:scope => 'publish_stream')
 
 ## Access token
 
-Access token is used to sign the request so the server can identify the client sending the request. If you already have an access_token, add it to the client with a block.
+Access token is used to sign the request so the server can identify the client sending the request. If you already have an access token, add it to the client with a block.
 
 ```ruby
 access_token  = 'enter in your value'

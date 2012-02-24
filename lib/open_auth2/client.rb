@@ -60,9 +60,6 @@ module OpenAuth2
       self
     end
 
-    # Packages the info from config & passed in arguments into an url
-    # that user has to visit to authorize this app.
-    #
     # Examples:
     #   client.build_code_url
     #   #=> 'http://...'
@@ -77,23 +74,11 @@ module OpenAuth2
     # Returns: String (url).
     #
     def build_code_url(params={})
-      joined_scope = scope.join(',') if scope.respond_to?(:join)
+      token.build_code_url(params)
+    end
 
-      body = {
-        :response_type => response_type,
-        :client_id     => client_id,
-        :redirect_uri  => redirect_uri,
-        :scope         => joined_scope
-      }
-
-      body.merge!(params)
-
-      params = URI.encode_www_form(body)
-      host   = URI.parse(code_url).host
-      output = URI::HTTPS.build(:host => host,
-                                :path => authorize_path,
-                                :query => params)
-      output.to_s
+    def token
+      @token ||= Token.new(config)
     end
 
     private
