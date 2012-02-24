@@ -21,9 +21,9 @@ redirect_uri  = 'enter in your own value'
 
 config = OpenAuth2::Config.new do |c|
   # indicate what kind of provider you want to use
-  # :google, :facebook or :default
-
-  c.provider       = :google
+  # Accepts: :google, :facebook or :default
+  #
+  c.provider       = :facebook
 
   c.client_id      = client_id
   c.client_secret  = client_secret
@@ -34,8 +34,9 @@ end
 
 ## Requirements
 
+  * ActiveSupport
   * Faraday
-  * Uri
+  * URI
   * Json
 
 ## Install

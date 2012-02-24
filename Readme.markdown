@@ -7,10 +7,36 @@ OpenAuth2 is a thin OAuth2 wrapper written on top of Faraday in Ruby. The goal i
 * This software is alpha, you're either very brave or very foolish to use this in production of rockets or anything else.
 * This Readme is best viewed in [DocumentUp](http://documentup.com/senthilnambi/OpenAuth2).
 
+## Config
+
+To begin, let's setup the configuration. Here we're assuming connection to Facebook api. OpenAuth2 supports Google and Facebook out of the box (more to come soon). Other sites can be configured manually.
+
+```ruby
+require 'open_auth2'
+
+# get this info by signing your app at developers.facebook.com
+client_id     = 'enter in your own value'
+client_secret = 'enter in your own value'
+redirect_uri  = 'enter in your own value'
+
+config = OpenAuth2::Config.new do |c|
+  # indicate what kind of provider you want to use
+  # Accepts: :google, :facebook or :default
+  #
+  c.provider       = :facebook
+
+  c.client_id      = client_id
+  c.client_secret  = client_secret
+  c.redirect_uri   = redirect_uri
+  c.scope          = ['publish_stream']
+end
+```
+
 ## Requirements
 
+  * ActiveSupport
   * Faraday
-  * Uri
+  * URI
   * Json
 
 ## Install
