@@ -5,6 +5,7 @@ require_relative 'open_auth2/provider/base'
 require_relative 'open_auth2/provider/default'
 require_relative 'open_auth2/provider/facebook'
 require_relative 'open_auth2/provider/google'
+require_relative 'open_auth2/provider/four_square'
 
 require_relative 'open_auth2/config'
 

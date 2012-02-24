@@ -78,8 +78,8 @@ describe OpenAuth2::Config do
       # mimicking beh. of users including their own provider
       module OpenAuth2::Provider module UserDefined end end
 
-      known_providers = [:Default, :Facebook, :Google, :UserDefined]
-      error_message   = "Known Providers: #{known_providers}"
+      providers = [:Default, :Facebook, :Google, :FourSquare, :UserDefined]
+      error_message = "Known Providers: #{providers}"
 
       expect do
         subject.provider = :unknown
