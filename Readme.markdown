@@ -32,6 +32,23 @@ config = OpenAuth2::Config.new do |c|
 end
 ```
 
+## Client
+
+Next, initialize a `client` object, which we'll use to make requests and pass in the `config` object we created earlier.
+
+```ruby
+client = OpenAuth2::Client.new do |c|
+  c.config = config
+end
+```
+
+`Client#configure_connection` takes a block, which can be used to setup middleware like any other Faraday client, i.e:
+
+```ruby
+client.configure_connection do |c|
+  c.response :logger
+end
+```
 ## Requirements
 
   * ActiveSupport
