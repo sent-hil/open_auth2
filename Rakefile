@@ -57,13 +57,17 @@ task :irb do
   sh "irb -rubygems -r ./lib/#{name}.rb"
 end
 
-desc "Open an pry session preloaded with this library"
+desc "Open a pry session preloaded with this library"
 task :pry do
   sh "pry -r ./lib/#{name}.rb"
 end
 
 # Custom tasks (add your own tasks here)
-# ...
+
+desc "Open a pry session with examples/fb loaded"
+task :fb do
+  sh "pry -r ./examples/fb.rb"
+end
 
 # Packaging tasks
 
