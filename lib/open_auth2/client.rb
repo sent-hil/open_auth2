@@ -23,6 +23,8 @@ module OpenAuth2
     #   # or pass it as an argument
     #   OpenAuth2::Client.new(config)
     #
+    # Returns: self.
+    #
     def initialize(config=nil)
       @config = config
 
