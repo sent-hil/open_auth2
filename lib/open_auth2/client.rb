@@ -31,9 +31,7 @@ module OpenAuth2
       @config = config
 
       yield self if block_given?
-
-      raise NoConfigObject      unless @config
-      raise UnknownConfigObject unless @config.is_a?(OpenAuth2::Config)
+      raise_config_setter_errors
 
       # endpoint is where the api requests are made
       @faraday_url = endpoint
@@ -42,7 +40,8 @@ module OpenAuth2
     end
 
     # Yields: self, use it to set/change config after #initialize.
-    # Mainly for setting access_token and refresh_token.
+    # Mainly for setting access_token and refresh_token. Will raise
+    # Config related errors same as #initialize.
     #
     # Examples:
     #   client = OpenAuth2::Client.new
@@ -56,6 +55,9 @@ module OpenAuth2
     #
     def configure
       yield self
+      raise_config_setter_errors
+
+      self
     end
 
     # Packages the info from config & passed in arguments into an url
@@ -92,6 +94,13 @@ module OpenAuth2
                                 :path => authorize_path,
                                 :query => params)
       output.to_s
+    end
+
+    private
+
+    def raise_config_setter_errors
+      raise NoConfigObject      unless config
+      raise UnknownConfigObject unless config.is_a?(OpenAuth2::Config)
     end
   end
 end

@@ -47,6 +47,20 @@ describe OpenAuth2::Client do
       subject.access_token.should  == :access_token
       subject.refresh_token.should == :refresh_token
     end
+
+    it 'raises NoConfigObject' do
+      expect do
+        subject = described_class.new(config)
+        subject.configure {|c| c.config = nil }
+      end.to raise_error(OpenAuth2::NoConfigObject)
+    end
+
+    it 'raises UnknownConfigObject' do
+      expect do
+        subject = described_class.new(config)
+        subject.configure {|c| c.config = 'string' }
+      end.to raise_error(OpenAuth2::UnknownConfigObject)
+    end
   end
 
   subject { described_class.new(config) }
