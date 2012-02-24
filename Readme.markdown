@@ -50,6 +50,20 @@ client.configure_connection do |c|
 end
 ```
 
+## Authenticate Url
+
+To start the OAuth2 exotic dance, you'll need to obtain a 'code' from the server, which you can then use to request an 'access_token'. Redirect the user/yourself to this url to obtain that 'code'.
+
+```ruby
+client.build_code_url
+```
+
+`build_code_url` takes optional params hash, which will be bundled into the url.
+
+```ruby
+client.build_code_url(:scope => 'publish_stream')
+```
+
 ## Requirements
 
   * ActiveSupport

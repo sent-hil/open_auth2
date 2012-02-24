@@ -12,7 +12,7 @@ module OpenAuth2
     # Yields: self.
     #
     # Accepts:
-    #   config - (optional) OpenAuth2::Config object
+    #   config: (optional) OpenAuth2::Config object
     #
     # Examples:
     #   config = OpenAuth2::Config.new
@@ -39,6 +39,42 @@ module OpenAuth2
       @faraday_url = endpoint
 
       self
+    end
+
+    # Packages the info from config & passed in arguments into an url
+    # that user has to visit to authorize this app.
+    #
+    # Examples:
+    #   client.build_code_url
+    #   #=> 'http://...'
+    #
+    #   # or
+    #   client.build_code_url(:scope => 'publish_stream')
+    #
+    # Accepts:
+    #   params: (optional) Hash of additional config to be bundled into
+    #           the url.
+    #
+    # Returns: String (url).
+    #
+    def build_code_url(params={})
+      joined_scope = scope.join(',') if scope.respond_to?(:join)
+
+      body = {
+        :response_type => response_type,
+        :client_id     => client_id,
+        :redirect_uri  => redirect_uri,
+        :scope         => joined_scope
+      }
+
+      body.merge!(params)
+
+      params = URI.encode_www_form(body)
+      host   = URI.parse(code_url).host
+      output = URI::HTTPS.build(:host => host,
+                                :path => authorize_path,
+                                :query => params)
+      output.to_s
     end
   end
 end
