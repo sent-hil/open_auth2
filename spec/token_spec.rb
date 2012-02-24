@@ -8,11 +8,7 @@ describe OpenAuth2::Client do
     end
   end
 
-  subject do
-    OpenAuth2::Token.new do |c|
-      c.config = config
-    end
-  end
+  subject { OpenAuth2::Token.new(config) }
 
   context '#initialize' do
     it 'accepts config as argument' do
