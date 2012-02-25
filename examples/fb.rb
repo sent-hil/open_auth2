@@ -1,9 +1,9 @@
 require_relative '../lib/open_auth2'
 
-@default = OpenAuth2::Config.new do |c|
-  c.provider = :default
-end
-
-@fb = OpenAuth2::Config.new do |c|
+@config = OpenAuth2::Config.new do |c|
   c.provider = :facebook
 end
+
+@client = OpenAuth2::Client.new(@config)
+
+@coke = @client.get(:path => '/cocacola')
