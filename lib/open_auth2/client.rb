@@ -15,7 +15,9 @@ module OpenAuth2
     #   config: (optional) OpenAuth2::Config object
     #
     # Examples:
-    #   config = OpenAuth2::Config.new
+    #   config = OpenAuth2::Config.new do |c|
+    #     c.provider = :facebook
+    #   end
     #
     #   # set via block
     #   OpenAuth2::Client.new do |c|
@@ -85,6 +87,19 @@ module OpenAuth2
       token.build_code_url(params)
     end
 
+    # Makes GET request to OAuth server via Faraday. If access_token
+    # is available, we pass that along to identify ourselves.
+    #
+    # Accepts:
+    #   hash
+    #     :path - (required)
+    #
+    # Examples:
+    #   client.get(:path => '/cocacola')
+    #   client.get(:path => '/cocacola', :limit => 1)
+    #
+    # Returns: Faraday response object.
+    #
     def get(hash)
       connection.get do |conn|
         path = hash.delete(:path)
@@ -99,6 +114,28 @@ module OpenAuth2
       end
     end
 
+    # Makes request to OAuth server via Faraday#run_request. It takes
+    # Hash since I can never remember the order in which to pass the
+    # arguments.
+    #
+    # Accepts:
+    #   hash
+    #     :verb   - (required) GET/POST etc.
+    #     :path   - (required)
+    #     :body   - (optional)
+    #     :header - (optional)
+    #
+    # Examples:
+    #   # public GET request
+    #   path = "https://graph.facebook.com/cocacola"
+    #   client.run_request(verb: :get, path: path, body: nil, header: nil)
+    #
+    #   # private GET request
+    #   path = "/me/likes?access_token=..."
+    #   client.run_request(verb: :get, path: path, body: nil, header: nil)
+    #
+    # Returns: Faraday response object.
+    #
     def run_request(hash)
       connection.run_request(hash[:verb], hash[:path], hash[:body],
                              hash[:header])
