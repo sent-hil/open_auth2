@@ -95,6 +95,55 @@ end
 # asks Facebook for access_token
 token.get
 
+# the following methods are now available
+client.access_token
+client.refresh_token
+client.token_expires_at
+client.token_expired?
+client.token_arrived_at
+```
+
+## GET Refresh Token
+
+```ruby
+# tells Facebook api to extend the expiration of the access_token
+token.refresh
+```
+
+## GET request
+
+To make an api call, simply call `get` with a hash containing `path`.
+
+```ruby
+client.get(:path => '/cocacola')
+```
+
+`get` accepts a Hash as second argument, which can be used to pass in additional parameters.
+
+```ruby
+client.get(:path => '/cocacola', :limit => 1)
+```
+
+## Faraday convenience methods
+
+`Client#get` is a convenience method that calls `Faraday#get`. You can drop down to Faraday connection object itself and make requests via that also.
+
+```ruby
+client.connection.get do |conn|
+  conn.url('/cocacola')
+end
+```
+
+`Client#run_request` points to `Faraday#run_request`. It takes hash since I can never remember the order in which to pass the arguments.
+
+```ruby
+path = "https://graph.facebook.com/cocacola"
+client.run_request(verb: :get, path: path, body: nil, header: nil)
+
+# same as
+client.connection.run_request(:get, path, nil, nil)
+```
+
 ## Requirements
 
   * ActiveSupport
