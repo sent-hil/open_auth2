@@ -34,4 +34,23 @@ describe 'Facebook Client' do
       end
     end
   end
+
+  context '#run_request' do
+    it 'makes public GET request' do
+      VCR.use_cassette('fb/cocacola') do
+        request = subject.run_request(:verb => :get, :path => '/cocacola',
+                                      :body => nil , :header => nil)
+        request.status.should == 200
+      end
+    end
+
+    it 'makes private GET request' do
+      VCR.use_cassette('fb/me') do
+        path = "/me/likes?access_token=#{Creds::Facebook::AccessToken}"
+        request = subject.run_request(:verb => :get, :path   => path,
+                                      :body => nil , :header => nil)
+        request.status.should == 200
+      end
+    end
+  end
 end

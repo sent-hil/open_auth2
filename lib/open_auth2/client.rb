@@ -99,6 +99,11 @@ module OpenAuth2
       end
     end
 
+    def run_request(hash)
+      connection.run_request(hash[:verb], hash[:path], hash[:body],
+                             hash[:header])
+    end
+
     private
 
     def raise_config_setter_errors
