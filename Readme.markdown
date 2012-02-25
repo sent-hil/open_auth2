@@ -92,6 +92,9 @@ token.configure_connection do |c|
   c.response :logger
 end
 
+# asks Facebook for access_token
+token.get
+
 ## Requirements
 
   * ActiveSupport
