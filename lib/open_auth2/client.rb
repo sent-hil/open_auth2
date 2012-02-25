@@ -85,6 +85,20 @@ module OpenAuth2
       token.build_code_url(params)
     end
 
+    def get(hash)
+      connection.get do |conn|
+        path = hash.delete(:path)
+
+        if path_prefix
+          path = "#{path_prefix}#{path}"
+        end
+
+        hash.merge!(:access_token => access_token) if access_token
+
+        conn.url(path, hash)
+      end
+    end
+
     private
 
     def raise_config_setter_errors

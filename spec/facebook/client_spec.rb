@@ -14,4 +14,24 @@ describe 'Facebook Client' do
   end
 
   subject { OpenAuth2::Client.new(config) }
+
+  context '#get' do
+    it 'makes public request' do
+      VCR.use_cassette('fb/cocacola') do
+        request = subject.get(:path => '/cocacola')
+        request.status.should == 200
+      end
+    end
+
+    it 'makes private request if #access_token' do
+      subject.configure do |c|
+        c.access_token = Creds::Facebook::AccessToken
+      end
+
+      VCR.use_cassette('fb/me') do
+        request = subject.get(:path => '/me/likes')
+        request.status.should == 200
+      end
+    end
+  end
 end
