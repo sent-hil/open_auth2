@@ -9,6 +9,14 @@ module OpenAuth2
         :token_path     => '/o/oauth2/token',
         :endpoint       => 'https://www.googleapis.com'
       }
+
+      def self.parse(config, body)
+        json = JSON.parse(body)
+        config.access_token = json['access_token']
+        config.refresh_token = json['refresh_token']
+        config.token_arrived_at = Time.now
+        config.token_expires_at = Time.now+3600
+      end
     end
   end
 end
