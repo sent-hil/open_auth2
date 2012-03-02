@@ -114,6 +114,28 @@ module OpenAuth2
       end
     end
 
+    # Makes POST request to OAuth server via Faraday.
+    #
+    # Accepts:
+    #   hash
+    #     :path - (required)
+    #     :content_type - (required)
+    #     :body - (required)
+    #
+    # Examples:
+    #   TODO: add fb post example
+    #
+    # Returns: Faraday response object.
+    #
+    def post(hash)
+      connection.post do |conn|
+        conn.headers["Content-Type"] = hash[:content_type]
+
+        conn.url(hash[:path], :access_token => access_token)
+        conn.body = hash[:body]
+      end
+    end
+
     # Makes request to OAuth server via Faraday#run_request. It takes
     # Hash since I can never remember the order in which to pass the
     # arguments.
