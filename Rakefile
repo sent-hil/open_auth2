@@ -69,6 +69,11 @@ task :fb do
   sh "pry -r ./examples/fb.rb"
 end
 
+desc "Open a pry session with examples/google loaded"
+task :google do
+  sh "pry -r ./examples/google.rb"
+end
+
 # Packaging tasks
 
 desc "Create tag v#{version} and build and push #{gem_file} to Rubygems"
