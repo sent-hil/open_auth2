@@ -1,5 +1,6 @@
 require 'active_support/inflector'
 require 'faraday'
+require 'json'
 
 require_relative 'open_auth2/provider'
 require_relative 'open_auth2/provider/base'
