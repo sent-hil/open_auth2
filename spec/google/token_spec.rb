@@ -33,6 +33,10 @@ describe 'Google Token' do
       end
     end
 
+    let(:time) do
+      Time.local(2012, 12, 21)
+    end
+
     before do
       Timecop.freeze(time) do
         get_token
@@ -49,10 +53,6 @@ describe 'Google Token' do
 
     it 'sets #refresh_token' do
       subject.refresh_token.should == Creds::Google::RefreshToken
-    end
-
-    let(:time) do
-      Time.local(2012, 12, 21)
     end
 
     it 'sets #token_arrived_at' do
