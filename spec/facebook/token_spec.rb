@@ -38,36 +38,34 @@ describe 'Facebook Token' do
       end
     end
 
+    let(:time) do
+      Time.local(2012, 12, 21)
+    end
+
+    before do
+      Timecop.freeze(time) do
+        get_token
+      end
+    end
+
     it 'requests OAuth server for access token' do
       get_token.status.should == 200
     end
 
     it 'sets #access_token' do
-      get_token
       subject.access_token.should == Creds::Facebook::AccessToken
     end
 
     it 'sets #refresh_token' do
-      get_token
       subject.refresh_token.should == Creds::Facebook::AccessToken
     end
 
-    let(:time) do
-      Time.local(2012, 12, 21)
-    end
-
     it 'sets #token_arrived_at' do
-      Timecop.freeze(time) do
-        get_token
-        subject.token_arrived_at.should == time
-      end
+      subject.token_arrived_at.should == time
     end
 
     it 'returns nil for #token_expired?' do
-      Timecop.freeze(time) do
-        get_token
-        subject.token_expired?.should == nil
-      end
+      subject.token_expired?.should == nil
     end
   end
 
