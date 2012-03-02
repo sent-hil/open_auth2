@@ -9,9 +9,10 @@ module Creds
   module Google
     ClientId       = '77848792642.apps.googleusercontent.com'
     ClientSecret   = 'ZtXPd6DkYYhIbmRQxwLaDUqp'
-    Code           = '4/Yq7jGZyRgWAckgYD5exuZ1Y4KFfE'
-    AccessToken    = 'ya29.AHES6ZRedBbJeB9ldRzP_ujkRphHHHWqg34slL_2woxWU1k'
-    NewAccessToken = 'ya29.AHES6ZTjfGp2MK913-q6Gw5Vir7JkOwPWAfu8Qt9SKQKN-Q'
-    RefreshToken   = '1/3eoP2nCjfD1J7H6ewlIOpioLKSfnMEmL0CAwOQ9Qz4s'
+    Code           = '4/p-ZTUZnHvDwbV2Pr95suBY4lTzWq'
+    AccessToken    = 'ya29.AHES6ZTZ5k5PsgSqkmhxBLLkSGkiOBxeaRPC-EcuornidGTxRsxHnQ'
+    RefreshToken   = '1/CcKja_mB9kZH0cLrydJJPR86NZJgRYzf-e_vYlr_j5E'
+
+    NewAccessToken = ''
   end
 end
