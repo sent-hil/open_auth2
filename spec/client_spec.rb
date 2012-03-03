@@ -4,7 +4,8 @@ require 'spec_helper'
 describe OpenAuth2::Client do
   let(:config) do
     OpenAuth2::Config.new do |c|
-      c.provider = :facebook
+      c.provider     = :facebook
+      c.access_token = :access_token
     end
   end
 
@@ -88,6 +89,10 @@ describe OpenAuth2::Client do
       subject.authorize_url = url
 
       subject.authorize_url.should == url
+    end
+
+    it 'overwritten Options stays that way' do
+      config.access_token.should == :access_token
     end
   end
 

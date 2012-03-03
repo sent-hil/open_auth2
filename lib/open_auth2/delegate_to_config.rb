@@ -17,7 +17,7 @@ module OpenAuth2
         end
 
         define_method("#{key}=") do |value|
-          @config.send("#{key}=", value) unless @config[value]
+          @config.send("#{key}=", value)
         end
       end
     end
