@@ -11,11 +11,18 @@ module OpenAuth2
       }
 
       def self.parse(config, body)
-        json = JSON.parse(body)
-        config.access_token = json['access_token']
-        config.refresh_token = json['refresh_token']
-        config.token_arrived_at = Time.now
-        config.token_expires_at = Time.now+3600
+        json                        = JSON.parse(body)
+
+        config.access_token         = json['access_token']
+        config.token_arrived_at     = Time.now
+        config.token_expires_at     = Time.now+3600
+
+        # google sends refresh_token when getting access_token, but not
+        # when refreshing
+        #
+        if config.refresh_token.empty?
+          config.refresh_token = json['refresh_token']
+        end
       end
     end
   end
