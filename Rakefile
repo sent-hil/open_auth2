@@ -13,7 +13,7 @@ def name
 end
 
 def version
-  line = File.read("lib/#{name}.rb")[/^\s*VERSION\s*=\s*.*/]
+  line = File.read("lib/#{name}/version.rb")[/^\s*VERSION\s*=\s*.*/]
   line.match(/.*VERSION\s*=\s*['"](.*)['"]/)[1]
 end
 
@@ -67,6 +67,11 @@ end
 desc "Open a pry session with examples/fb loaded"
 task :fb do
   sh "pry -r ./examples/fb.rb"
+end
+
+desc "Open a pry session with examples/google loaded"
+task :google do
+  sh "pry -r ./examples/google.rb"
 end
 
 # Packaging tasks

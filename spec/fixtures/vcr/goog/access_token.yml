@@ -1,0 +1,38 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: https://accounts.google.com:443/o/oauth2/token
+    body: 
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - application/json
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      cache-control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      pragma:
+      - no-cache
+      expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      date:
+      - Sat, 03 Mar 2012 00:36:32 GMT
+      content-type:
+      - application/json
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      server:
+      - GSE
+    body: ! "{\n  \"access_token\" : \"ya29.AHES6ZRXhZRQLYkdqVoHz9qxzTkNVhElBAQitCdJq816PQ\",\n
+      \ \"token_type\" : \"Bearer\",\n  \"expires_in\" : 3600,\n  \"refresh_token\"
+      : \"1/gUwId5-5ZHpM5G3Qooj67RDQI07zgzlJQwPjErLRzEg\"\n}"
+    http_version: '1.1'

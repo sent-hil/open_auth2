@@ -1,0 +1,36 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: https://graph.facebook.com:443/oauth/access_token
+    body: 
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - application/json
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      access-control-allow-origin:
+      - ! '*'
+      cache-control:
+      - private, no-cache, no-store, must-revalidate
+      content-type:
+      - text/plain; charset=UTF-8
+      expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      pragma:
+      - no-cache
+      x-fb-rev:
+      - '514925'
+      x-fb-debug:
+      - P9I9NADR2jvZfeNcVamI71Cay4CB4KBqBXQYcJ4YYws=
+      date:
+      - Sat, 25 Feb 2012 21:49:01 GMT
+      content-length:
+      - '127'
+    body: access_token=AAADNSxdSLhsBALUJwhyMDYVTCV07ZAUyXIGwm2Bb9G5oudfZCYz2TcZB23ZABbFKTShb6JZC0aUVEsNfTMTRrqVWIrVyxNf4pElZAZCUWnd9QZDZD
+    http_version: '1.1'

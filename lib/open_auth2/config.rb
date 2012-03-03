@@ -53,6 +53,10 @@ module OpenAuth2
       set_default_as_provider
     end
 
+    def parse(response_body)
+      @provider_const.parse(self, response_body)
+    end
+
     private
 
     def set_default_as_provider

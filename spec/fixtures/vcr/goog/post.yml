@@ -1,0 +1,44 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: https://www.googleapis.com:443/calendar/v3/calendars/openauth2@gmail.com/events?access_token=ya29.AHES6ZRXhZRQLYkdqVoHz9qxzTkNVhElBAQitCdJq816PQ
+    body: 
+    headers:
+      content-type:
+      - application/json
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      cache-control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      pragma:
+      - no-cache
+      expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      date:
+      - Sat, 03 Mar 2012 00:48:55 GMT
+      etag:
+      - ! '"05UDIdu8MZ4l75GrR4XASfYyuJA/Q05qQm43RGRKaEVBQUFBQUFBQUFBQT09"'
+      content-type:
+      - application/json; charset=UTF-8
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      server:
+      - GSE
+    body: ! "{\n \"kind\": \"calendar#event\",\n \"etag\": \"\\\"05UDIdu8MZ4l75GrR4XASfYyuJA/Q05qQm43RGRKaEVBQUFBQUFBQUFBQT09\\\"\",\n
+      \"id\": \"htblfka4hqckqtiirnriam72e4\",\n \"status\": \"confirmed\",\n \"htmlLink\":
+      \"https://www.google.com/calendar/event?eid=aHRibGZrYTRocWNrcXRpaXJucmlhbTcyZTQgb3BlbmF1dGgyQG0\",\n
+      \"created\": \"2012-03-03T00:48:55.000Z\",\n \"updated\": \"2012-03-03T00:48:55.000Z\",\n
+      \"summary\": \"From OpenAuth2\",\n \"creator\": {\n  \"email\": \"openauth2@gmail.com\"\n
+      },\n \"organizer\": {\n  \"email\": \"openauth2@gmail.com\"\n },\n \"start\":
+      {\n  \"dateTime\": \"2012-01-20T09:00:00-08:00\"\n },\n \"end\": {\n  \"dateTime\":
+      \"2012-01-20T09:25:00-08:00\"\n },\n \"iCalUID\": \"htblfka4hqckqtiirnriam72e4@google.com\",\n
+      \"sequence\": 0,\n \"reminders\": {\n  \"useDefault\": true\n }\n}\n"
+    http_version: '1.1'
