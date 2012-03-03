@@ -1,18 +1,17 @@
 require_relative '../lib/open_auth2'
 require 'json'
 
-@code          = ''
-@client_id     = ''
-@client_secret = ''
-@access_token  = ''
-@post_email    = ''
+ClientId       = nil
+ClientSecret   = nil
+Code           = nil
+AccessToken    = nil
+RefreshToken   = nil
 
 @config = OpenAuth2::Config.new do |c|
   c.provider       = :google
-  c.code           = @code
-  c.client_id      = @client_id
-  c.client_secret  = @client_secret
-  c.access_token   = @access_token
+  c.code           = Code
+  c.client_id      = ClientId
+  c.client_secret  = ClientSecret
   c.scope          = ['https://www.googleapis.com/auth/calendar']
   c.redirect_uri   = 'http://localhost:9393/google/callback'
   c.path_prefix    = '/calendar/v3'
@@ -24,8 +23,11 @@ end
 
 @token = @client.token
 
+params = {:approval_prompt => 'force', :access_type => 'offline'}
+@url  = @token.build_code_url(params)
+
 # get request
-#@list = @client.get(:path => '/users/me/calendarList')
+@list = @client.get(:path => '/users/me/calendarList')
 
 post_url = "/calendar/v3/calendars/#{post_email}/events"
 body     = {
@@ -41,7 +43,7 @@ body = JSON.dump(body)
              :content_type => "application/json")
 
 header   = {"Content-Type" => "application/json"}
-full_url = "#{post_url}?access_token=#{@access_token}"
+full_url = "#{post_url}?access_token=#{AccessToken}"
 
 # post request via #run_request
 @client.run_request(:verb   => :post,
