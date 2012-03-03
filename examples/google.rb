@@ -1,11 +1,12 @@
 require_relative '../lib/open_auth2'
 require 'json'
 
-ClientId       = nil
-ClientSecret   = nil
-Code           = nil
-AccessToken    = nil
-RefreshToken   = nil
+ClientId     = nil
+ClientSecret = nil
+Code         = nil
+AccessToken  = nil
+RefreshToken = nil
+PostEmail    = nil
 
 @config = OpenAuth2::Config.new do |c|
   c.provider       = :google
@@ -29,7 +30,7 @@ params = {:approval_prompt => 'force', :access_type => 'offline'}
 # get request
 @list = @client.get(:path => '/users/me/calendarList')
 
-post_url = "/calendar/v3/calendars/#{post_email}/events"
+post_url = "/calendar/v3/calendars/#{PostEmail}/events"
 body     = {
   "summary" => "From OpenAuth2",
   "start"   => {"dateTime"=>"2012-03-03T10:00:00.000-07:00"},
