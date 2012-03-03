@@ -10,7 +10,7 @@ module OpenAuth2
         :response_type            => 'code',
         :access_token_grant_name  => 'authorization_code',
         :refresh_token_grant_name => 'refresh_token',
-        :refresh_token_name       => 'refresh_token',
+        :refresh_token_name       => :refresh_token,
         :scope                    => [],
       }
     end
