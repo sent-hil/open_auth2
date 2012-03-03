@@ -1,0 +1,34 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: https://graph.facebook.com:443/me/feed?message=%27From%20OpenAuth2%27&access_token=AAADNSxdSLhsBALUJwhyMDYVTCV07ZAUyXIGwm2Bb9G5oudfZCYz2TcZB23ZABbFKTShb6JZC0aUVEsNfTMTRrqVWIrVyxNf4pElZAZCUWnd9QZDZD
+    body: 
+    headers:
+      content-type:
+      - application/json
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      access-control-allow-origin:
+      - ! '*'
+      cache-control:
+      - private, no-cache, no-store, must-revalidate
+      content-type:
+      - text/javascript; charset=UTF-8
+      expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      pragma:
+      - no-cache
+      x-fb-rev:
+      - '518267'
+      x-fb-debug:
+      - 1+GpoD6kWif2JDnTaD/XeITjokumXXb6BbGmwAciEiA=
+      date:
+      - Sat, 03 Mar 2012 01:37:49 GMT
+      content-length:
+      - '40'
+    body: ! '{"id":"100002930317357_200068986767444"}'
+    http_version: '1.1'

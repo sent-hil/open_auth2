@@ -53,4 +53,30 @@ describe 'Facebook Client' do
       end
     end
   end
+
+  context '#post' do
+    before do
+      subject.configure do |c|
+        c.access_token = Creds::Facebook::AccessToken
+      end
+    end
+
+    let(:post_url) do
+      "/me/feed?message='From OpenAuth2'"
+    end
+
+    let(:body) do
+      "{\"message\":\"From OpenAuth2\"}"
+    end
+
+    it 'makes request' do
+      VCR.use_cassette('fb/post') do
+        content_type = 'application/json'
+        request = subject.post(:path         => post_url,
+                               :body         => body,
+                               :content_type => content_type)
+        request.status.should == 200
+      end
+    end
+  end
 end
