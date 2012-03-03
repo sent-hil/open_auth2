@@ -63,4 +63,25 @@ describe 'Google Token' do
       subject.token_expired?.should == true
     end
   end
+
+  context '#refresh' do
+    let(:refresh_token) do
+      config.configure do |c|
+        c.refresh_token = Creds::Google::RefreshToken
+      end
+
+      VCR.use_cassette('goog/refresh_token') do
+        subject.refresh
+      end
+    end
+
+    it 'requests OAuth server to refresh access token' do
+      refresh_token.status.should == 200
+    end
+
+    it 'sets new #access_token' do
+      refresh_token
+      subject.access_token.should == Creds::Google::NewAccessToken
+    end
+  end
 end

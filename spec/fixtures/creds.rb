@@ -8,11 +8,11 @@ module Creds
 
   module Google
     ClientId       = '77848792642.apps.googleusercontent.com'
-    ClientSecret   = 'ZtXPd6DkYYhIbmRQxwLaDUqp'
-    Code           = '4/p-ZTUZnHvDwbV2Pr95suBY4lTzWq'
-    AccessToken    = 'ya29.AHES6ZTZ5k5PsgSqkmhxBLLkSGkiOBxeaRPC-EcuornidGTxRsxHnQ'
-    RefreshToken   = '1/CcKja_mB9kZH0cLrydJJPR86NZJgRYzf-e_vYlr_j5E'
+    ClientSecret   = '8oPMGGpIzZLwaW89pIcx78mB'
+    Code           = '4/2jmx49tYiahM2MzvM_W75S7Zd92i'
+    AccessToken    = 'ya29.AHES6ZRXhZRQLYkdqVoHz9qxzTkNVhElBAQitCdJq816PQ'
+    RefreshToken   = '1/gUwId5-5ZHpM5G3Qooj67RDQI07zgzlJQwPjErLRzEg'
 
-    NewAccessToken = ''
+    NewAccessToken = 'ya29.AHES6ZR2V9Y9vZnTC4YFHChTetjwML1mDLZRSmiBx-XT9g'
   end
 end
