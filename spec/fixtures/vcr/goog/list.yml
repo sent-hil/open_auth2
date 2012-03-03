@@ -1,0 +1,50 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: https://www.googleapis.com:443/calendar/v3/users/me/calendarList?access_token=ya29.AHES6ZRXhZRQLYkdqVoHz9qxzTkNVhElBAQitCdJq816PQ
+    body: 
+    headers:
+      accept-encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      expires:
+      - Sat, 03 Mar 2012 00:43:30 GMT
+      date:
+      - Sat, 03 Mar 2012 00:43:30 GMT
+      cache-control:
+      - private, max-age=0, must-revalidate, no-transform
+      etag:
+      - ! '"05UDIdu8MZ4l75GrR4XASfYyuJA/zOhVd4w0MdY1DcWnD1I5Aw6EG1A"'
+      content-type:
+      - application/json; charset=UTF-8
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      server:
+      - GSE
+    body: ! "{\n \"kind\": \"calendar#calendarList\",\n \"etag\": \"\\\"05UDIdu8MZ4l75GrR4XASfYyuJA/RlR_v1har4GKp7r_0Pat7Cwxutc\\\"\",\n
+      \"items\": [\n  {\n   \"kind\": \"calendar#calendarListEntry\",\n   \"etag\":
+      \"\\\"05UDIdu8MZ4l75GrR4XASfYyuJA/Xy22eQFbkRyL-kXKKp9gXUGjeVU\\\"\",\n   \"id\":
+      \"#contacts@group.v.calendar.google.com\",\n   \"summary\": \"Contacts' birthdays
+      and events\",\n   \"description\": \"Your contacts' birthdays and anniversaries\",\n
+      \  \"timeZone\": \"America/Los_Angeles\",\n   \"colorId\": \"12\",\n   \"selected\":
+      true,\n   \"accessRole\": \"reader\"\n  },\n  {\n   \"kind\": \"calendar#calendarListEntry\",\n
+      \  \"etag\": \"\\\"05UDIdu8MZ4l75GrR4XASfYyuJA/gHhWepcSR_7BG-SE_f3YmpNqHhA\\\"\",\n
+      \  \"id\": \"en.usa#holiday@group.v.calendar.google.com\",\n   \"summary\":
+      \"US Holidays\",\n   \"description\": \"US Holidays\",\n   \"timeZone\": \"America/Los_Angeles\",\n
+      \  \"colorId\": \"9\",\n   \"selected\": true,\n   \"accessRole\": \"reader\"\n
+      \ },\n  {\n   \"kind\": \"calendar#calendarListEntry\",\n   \"etag\": \"\\\"05UDIdu8MZ4l75GrR4XASfYyuJA/_btzWSa3jrAuPbrE6wq47gM7i5U\\\"\",\n
+      \  \"id\": \"openauth2@gmail.com\",\n   \"summary\": \"openauth2@gmail.com\",\n
+      \  \"timeZone\": \"America/Los_Angeles\",\n   \"colorId\": \"15\",\n   \"selected\":
+      true,\n   \"accessRole\": \"owner\",\n   \"defaultReminders\": [\n    {\n     \"method\":
+      \"email\",\n     \"minutes\": 10\n    },\n    {\n     \"method\": \"popup\",\n
+      \    \"minutes\": 10\n    }\n   ]\n  }\n ]\n}\n"
+    http_version: '1.1'
