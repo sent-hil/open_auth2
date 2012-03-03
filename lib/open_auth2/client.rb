@@ -118,18 +118,20 @@ module OpenAuth2
     #
     # Accepts:
     #   hash
-    #     :path - (required)
-    #     :content_type - (required)
-    #     :body - (required)
+    #     :path         - (required)
+    #     :content_type - (optional)
+    #     :body         - (optional)
     #
     # Examples:
-    #   TODO: add fb post example
+    #   client.post(:path => "/me/feed?message='From OpenAuth2'")
     #
     # Returns: Faraday response object.
     #
     def post(hash)
       connection.post do |conn|
-        conn.headers["Content-Type"] = hash[:content_type]
+        if hash[:content_type]
+          conn.headers["Content-Type"] = hash[:content_type]
+        end
 
         conn.url(hash[:path], :access_token => access_token)
         conn.body = hash[:body]
