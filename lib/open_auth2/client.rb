@@ -123,7 +123,14 @@ module OpenAuth2
     #     :body         - (optional)
     #
     # Examples:
+    #   # using query params (fb uses this)
     #   client.post(:path => "/me/feed?message='From OpenAuth2'")
+    #
+    #   # using body (google uses this)
+    #   body = JSON.dump(:message => "From OpenAuth2)
+    #   client.post(:path         => "/me/feed,
+    #               :body         => body,
+    #               :content_type => 'application/json')
     #
     # Returns: Faraday response object.
     #
