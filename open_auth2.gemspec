@@ -31,6 +31,44 @@ Gem::Specification.new do |s|
 
   # = MANIFEST =
   s.files = %w[
+    Gemfile
+    License
+    Rakefile
+    Readme.markdown
+    Spec.markdown
+    examples/fb.rb
+    examples/google.rb
+    lib/open_auth2.rb
+    lib/open_auth2/client.rb
+    lib/open_auth2/config.rb
+    lib/open_auth2/connection.rb
+    lib/open_auth2/delegate_to_config.rb
+    lib/open_auth2/provider.rb
+    lib/open_auth2/provider/base.rb
+    lib/open_auth2/provider/default.rb
+    lib/open_auth2/provider/facebook.rb
+    lib/open_auth2/provider/google.rb
+    lib/open_auth2/token.rb
+    lib/open_auth2/version.rb
+    open_auth2.gemspec
+    spec/client_spec.rb
+    spec/config_spec.rb
+    spec/facebook/client_spec.rb
+    spec/facebook/token_spec.rb
+    spec/fixtures/creds.rb
+    spec/fixtures/vcr/fb/access_token.yml
+    spec/fixtures/vcr/fb/cocacola.yml
+    spec/fixtures/vcr/fb/me.yml
+    spec/fixtures/vcr/fb/post.yml
+    spec/fixtures/vcr/fb/refresh_token.yml
+    spec/fixtures/vcr/goog/access_token.yml
+    spec/fixtures/vcr/goog/list.yml
+    spec/fixtures/vcr/goog/post.yml
+    spec/fixtures/vcr/goog/refresh_token.yml
+    spec/google/client_spec.rb
+    spec/google/token_spec.rb
+    spec/spec_helper.rb
+    spec/token_spec.rb
   ]
   # = MANIFEST =
 end
