@@ -144,6 +144,46 @@ client.run_request(verb: :get, path: path, body: nil, header: nil)
 client.connection.run_request(:get, path, nil, nil)
 ```
 
+## Plugins
+
+OpenAuth2 comes with inbuilt support for Google and Facebook, but its trivial to add new plugins.
+
+There are only three requirements:
+
+  1. Should be under right namespace (OpenAuth2::Provider)
+  1. Contains Options hash
+  1. Contains #parse class method
+
+### Foursquare Example
+
+```ruby
+module OpenAuth2
+  module Provider
+    module Facebook
+
+      # Provider::Base contains keys of various accepted
+      # Options, while Provider::Default contains the default options and
+      # their values. You can however override them here.
+      #
+      Options = {
+        :authorize_url            => '',
+        :code_url                 => '',
+        :refresh_token_grant_name => '',
+      }
+
+      def self.parse(config, response_body)
+        # parse the response body
+        access_token            = response_body.gsub('access_token=', '')
+
+        # update config to reflect new information
+        config.access_token     = access_token
+        config.token_arrived_at = Time.now
+      end
+    end
+  end
+end
+```
+
 ## Google example
 
 ```ruby
