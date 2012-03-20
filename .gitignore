@@ -6,3 +6,4 @@ pkg/*
 notes.rb
 coverage/*
 vendor/ruby
+.rbx/*
