@@ -112,7 +112,6 @@ module OpenAuth2
       }.merge(params)
     end
 
-    # TODO: learn about merge vs merge!
     def get_body_hash(params)
       {
         :client_id      => client_id,
