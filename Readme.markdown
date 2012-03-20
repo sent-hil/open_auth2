@@ -239,6 +239,13 @@ client.run_request(:verb   => :post,
   * URI
   * Json
 
+## Supported Versions
+
+  * MRI 1.9.2
+  * MRI 1.9.3
+  * jRuby (jruby --1.9 rspec)
+  * Rubinius 2.0.0dev (RBXOPT=-X19 rbx- S rspec)
+
 ## Install
 
     $ gem install open_auth2
