@@ -146,20 +146,22 @@ client.connection.run_request(:get, path, nil, nil)
 
 ## Plugins
 
-OpenAuth2 comes with inbuilt support for Google and Facebook, but its trivial to add new plugins.
+Since various OAuth2 providers differ in their implementation, OpenAuth2 provides a simple plugin system to accomodate the differences, rather than 'one shoe fits all' approach. Facebook and Google plugins are builtin, but it is trivial to add new ones.
 
-There are only three requirements:
+There are three requirements:
 
   1. Should be under right namespace (OpenAuth2::Provider)
-  1. Contains Options hash
-  1. Contains #parse class method
+  1. Contain Options hash
+  1. Contain #parse class method
 
-### Foursquare Example
+To use the plugin, require the file and then call `Config#provider=` with name of the provider. OpenAuth2 upcases and camelizes the name and looks for the constant under OpenAuth2::Provider namespace.
+
+### Plugin Example
 
 ```ruby
 module OpenAuth2
   module Provider
-    module Facebook
+    module YourApi
 
       # Provider::Base contains keys of various accepted
       # Options, while Provider::Default contains the default options and
@@ -171,6 +173,9 @@ module OpenAuth2
         :refresh_token_grant_name => '',
       }
 
+      # Called after AccessToken#get and #refresh response are received
+      # from provider.
+      #
       def self.parse(config, response_body)
         # parse the response body
         access_token            = response_body.gsub('access_token=', '')
