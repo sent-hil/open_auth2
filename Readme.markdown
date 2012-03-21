@@ -154,7 +154,7 @@ There are three requirements:
   1. Contain Options hash
   1. Contain #parse class method
 
-To use the plugin, require the file and then call `Config#provider=` with name of the provider. OpenAuth2 upcases and camelizes the name and looks for the constant under OpenAuth2::Provider namespace.
+To use the plugin, call `Config#provider=` with name of the provider. OpenAuth2 upcases and camelizes the name and looks for the constant under OpenAuth2::Provider namespace.
 
 ### Plugin Example
 
