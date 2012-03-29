@@ -20,6 +20,4 @@ require_relative 'open_auth2/version'
 
 module OpenAuth2
   class UnknownProvider < StandardError; end
-  class NoConfigObject < StandardError; end
-  class UnknownConfigObject < StandardError; end
 end

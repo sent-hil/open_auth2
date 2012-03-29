@@ -21,18 +21,6 @@ describe OpenAuth2::Client do
       end
     end
 
-    it 'raises NoConfigObject' do
-      expect do
-        subject = described_class.new
-      end.to raise_error(OpenAuth2::NoConfigObject)
-    end
-
-    it 'raises UnknownConfigObject' do
-      expect do
-        subject = described_class.new('string')
-      end.to raise_error(OpenAuth2::UnknownConfigObject)
-    end
-
     it 'sets @faraday_url' do
       subject.faraday_url.should == 'https://graph.facebook.com'
     end
@@ -47,20 +35,6 @@ describe OpenAuth2::Client do
 
       subject.access_token.should  == :access_token
       subject.refresh_token.should == :refresh_token
-    end
-
-    it 'raises NoConfigObject' do
-      expect do
-        subject = described_class.new(config)
-        subject.configure {|c| c.config = nil }
-      end.to raise_error(OpenAuth2::NoConfigObject)
-    end
-
-    it 'raises UnknownConfigObject' do
-      expect do
-        subject = described_class.new(config)
-        subject.configure {|c| c.config = 'string' }
-      end.to raise_error(OpenAuth2::UnknownConfigObject)
     end
   end
 

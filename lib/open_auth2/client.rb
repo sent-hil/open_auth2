@@ -33,7 +33,6 @@ module OpenAuth2
       @config = config
 
       yield self if block_given?
-      raise_config_setter_errors
 
       # endpoint is where the api requests are made
       @faraday_url = endpoint
@@ -57,7 +56,6 @@ module OpenAuth2
     #
     def configure
       yield self
-      raise_config_setter_errors
 
       self
     end
@@ -170,13 +168,6 @@ module OpenAuth2
     def run_request(hash)
       connection.run_request(hash[:verb], hash[:path], hash[:body],
                              hash[:header])
-    end
-
-    private
-
-    def raise_config_setter_errors
-      raise NoConfigObject      unless config
-      raise UnknownConfigObject unless config.is_a?(OpenAuth2::Config)
     end
   end
 end
