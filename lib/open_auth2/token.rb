@@ -5,12 +5,7 @@ module OpenAuth2
     extend DelegateToConfig
     include Connection
 
-    # Use it to set @config. Unlike Client, no error is raised since
-    # this is not part of public api. This will be called from
-    # Client#token internally only.
-    #
-    # Accepts:
-    #   config: OpenAuth2::Config object
+    # Called internally from Client#token only.
     #
     # Returns: self.
     #
@@ -21,8 +16,8 @@ module OpenAuth2
       self
     end
 
-    # Packages the info from config & passed in arguments into an url
-    # that user has to visit to authorize this app.
+    # Packages info from config & passed in arguments into an url that
+    # user can to visit to authorize this app.
     #
     # Examples:
     #   token.build_code_url
@@ -32,8 +27,7 @@ module OpenAuth2
     #   token.build_code_url(:scope => 'publish_stream')
     #
     # Accepts:
-    #   params: (optional) Hash of additional config to be bundled into
-    #           the url.
+    #   params: (optional) Hash of additional config.
     #
     # Returns: String (url).
     #
@@ -46,7 +40,7 @@ module OpenAuth2
     end
 
     # Make request to OAuth server for access token & ask @config to
-    # parse it. @config delegates that to the appropriate provider.
+    # parse it. @config delegates to the appropriate provider.
     #
     # We ask @config since the format of response differs between
     # OAuth servers widely.
@@ -131,7 +125,7 @@ module OpenAuth2
        }.merge(params)
     end
 
-    # Makes the actual request. connection is the Faraday object.
+    # Makes the actual request. `connection` is a Faraday object.
     def post(body)
       connection.post do |conn|
         conn.headers["Content-Type"] = "application/x-www-form-urlencoded"

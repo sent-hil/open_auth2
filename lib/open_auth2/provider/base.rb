@@ -1,8 +1,8 @@
 module OpenAuth2
   module Provider
 
-    # Contains all possible Options keys. Config allows only the ones
-    # specified here.
+    # Contains all possible Options keys. Config uses this to define
+    # methods.
     #
     module Base
       Keys = [
