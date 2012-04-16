@@ -14,7 +14,7 @@ describe OpenAuth2::Client do
   end
 
   context '#initialize' do
-    it 'accepts config as argument' do
+    it 'accepts config as an argument' do
       subject.config.should == config
     end
 
@@ -27,7 +27,7 @@ describe OpenAuth2::Client do
       subject.config.should == config
     end
 
-    it 'sets @faraday_url' do
+    it 'sets endpoint to make requests' do
       subject.faraday_url.should == 'https://graph.facebook.com'
     end
   end
@@ -77,11 +77,11 @@ describe OpenAuth2::Client do
   end
 
   context OpenAuth2::Connection do
-    it 'returns Faraday::Connection object' do
+    it 'returns Faraday object' do
       subject.connection.should be_a(Faraday::Connection)
     end
 
-    it 'yields Faraday::Connection object' do
+    it 'allows adding custom middleware to Faraday' do
       subject.connection do
         response :logger
       end
