@@ -11,8 +11,8 @@ describe OpenAuth2::Config do
 
   context '#initialize' do
     subject do
-      described_class.new do |c|
-        c.client_id = :set_in_new
+      described_class.new do
+        self.client_id = :set_in_new
       end
     end
 
@@ -27,8 +27,8 @@ describe OpenAuth2::Config do
 
   context '#configure' do
     it 'accepts a block to set/overwrite config' do
-      subject.configure do |c|
-        c.client_id = :set_in_configure
+      subject.configure do
+        self.client_id = :set_in_configure
       end
 
       subject.client_id.should == :set_in_configure
@@ -85,8 +85,8 @@ describe OpenAuth2::Config do
   end
 
   let(:overwrite_response_type) do
-    subject.configure do |c|
-      c.response_type = :overwritten
+    subject.configure do
+      self.response_type = :overwritten
     end
   end
 

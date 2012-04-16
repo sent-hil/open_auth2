@@ -5,32 +5,31 @@ module OpenAuth2
     attr_accessor *Provider::Base::Keys
     attr_reader :provider, :provider_const, :provider_string
 
-    # Yields: self, use it to set config info.
+    # Use to set config info.
     #
     # Examples:
-    #   OpenAuth2::Config.new do |c|
-    #     c.provider = :default
+    #   OpenAuth2::Config.new do
+    #     provider = :default
     #   end
     #
-    def initialize
+    def initialize(&blk)
       set_default_as_provider
-
-      yield self if block_given?
+      instance_eval(&blk) if block_given?
     end
 
-    # Yields: self, use it to set/change config after #initialize.
+    # Use to set config info.
     #
     # Examples:
     #   config = OpenAuth2::Config.new
     #
-    #   config.configure do |c|
-    #     c.provider = :google
+    #   config.configure do
+    #     provider = :google
     #   end
     #
     # Returns: self.
     #
-    def configure
-      yield self if block_given?
+    def configure(&blk)
+      instance_eval(&blk) if block_given?
     end
 
     # Finds provider's module & copies its Options key/value pairs.
