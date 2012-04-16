@@ -5,11 +5,7 @@ module OpenAuth2
     extend DelegateToConfig
     include Connection
 
-    # Use it to set @config. Will raise error if no @config or wrong
-    # @config. We rely on Config for all Options info, so its important
-    # it is set right.
-    #
-    # Yields: self.
+    # Use to set config.
     #
     # Accepts:
     #   config: (optional) OpenAuth2::Config object
@@ -33,9 +29,7 @@ module OpenAuth2
       @faraday_url = endpoint
     end
 
-    # Yields: self, use it to set/change config after #initialize.
-    # Mainly for setting access_token and refresh_token. Will raise
-    # Config related errors same as #initialize.
+    # Use to set/change config after #initialize.
     #
     # Examples:
     #   client = OpenAuth2::Client.new
