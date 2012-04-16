@@ -12,8 +12,6 @@ module OpenAuth2
     #     c.provider = :default
     #   end
     #
-    # Returns: self.
-    #
     def initialize
       set_default_as_provider
 

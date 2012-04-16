@@ -6,9 +6,6 @@ module OpenAuth2
     include Connection
 
     # Called internally from Client#token only.
-    #
-    # Returns: self.
-    #
     def initialize(config)
       @config      = config
       @faraday_url = authorize_url
