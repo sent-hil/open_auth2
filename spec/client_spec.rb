@@ -9,9 +9,12 @@ describe OpenAuth2::Client do
     end
   end
 
+  subject do
+    described_class.new(config)
+  end
+
   context '#initialize' do
     it 'accepts config as argument' do
-      subject = described_class.new(config)
       subject.config.should == config
     end
 
