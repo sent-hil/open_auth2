@@ -36,8 +36,6 @@ module OpenAuth2
 
       # endpoint is where the api requests are made
       @faraday_url = endpoint
-
-      self
     end
 
     # Yields: self, use it to set/change config after #initialize.

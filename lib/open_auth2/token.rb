@@ -12,8 +12,6 @@ module OpenAuth2
     def initialize(config)
       @config      = config
       @faraday_url = authorize_url
-
-      self
     end
 
     # Packages info from config & passed in arguments into an url that
