@@ -82,9 +82,12 @@ describe OpenAuth2::Client do
     end
 
     it 'yields Faraday::Connection object' do
-      subject.connection do |f|
-        f.response :logger
+      subject.connection do
+        response :logger
       end
+
+      subject.connection.builder.handlers.should 
+        include(Faraday::Response::Logger)
     end
   end
 end

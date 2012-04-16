@@ -18,19 +18,18 @@ module OpenAuth2
     #   config = OpenAuth2::Config.new
     #   client = OpenAuth2::Client.new(config)
     #
-    #   client.connection do |c|
-    #     c.response :logger
+    #   client.connection do
+    #     response :logger
     #   end
     #
     # Returns: Faraday object.
     #
-    def connection
+    def connection(&blk)
       @connection ||= Faraday.new(:url => @faraday_url) do |builder|
         builder.request :url_encoded
         builder.adapter :net_http
+        builder.instance_eval(&blk) if block_given?
       end
-
-      yield @connection if block_given?
 
       @connection
     end
