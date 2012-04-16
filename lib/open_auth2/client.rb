@@ -20,19 +20,16 @@ module OpenAuth2
     #   end
     #
     #   # set via block
-    #   OpenAuth2::Client.new do |c|
-    #     c.config = config
+    #   OpenAuth2::Client.new do
+    #     config = config
     #   end
     #
     #   # or pass it as an argument
     #   OpenAuth2::Client.new(config)
     #
-    def initialize(config=nil)
+    def initialize(config=nil, &blk)
       @config = config
-
-      yield self if block_given?
-
-      # endpoint is where the api requests are made
+      instance_eval(&blk) if block_given?
       @faraday_url = endpoint
     end
 
@@ -43,17 +40,15 @@ module OpenAuth2
     # Examples:
     #   client = OpenAuth2::Client.new
     #
-    #   client.configure do |c|
-    #     c.access_token  = :access_token
-    #     c.refresh_token = :refresh_token
+    #   client.configure do
+    #     access_token  = :access_token
+    #     refresh_token = :refresh_token
     #   end
     #
     # Returns: self.
     #
-    def configure
-      yield self
-
-      self
+    def configure(&blk)
+      instance_eval(&blk) if block_given?
     end
 
     # We use this to get & refresh access/refresh tokens.

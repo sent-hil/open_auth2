@@ -19,9 +19,12 @@ describe OpenAuth2::Client do
     end
 
     it 'accepts config via block' do
-      subject = described_class.new do |c|
-        c.config = config
+      rspec = self
+      subject = described_class.new do
+        self.config = rspec.config
       end
+
+      subject.config.should == config
     end
 
     it 'sets @faraday_url' do
@@ -31,9 +34,9 @@ describe OpenAuth2::Client do
 
   context '#configure' do
     it 'accepts a block to set/overwrite config' do
-      subject.configure do |c|
-        c.access_token  = :access_token
-        c.refresh_token = :refresh_token
+      subject.configure do
+        self.access_token  = :access_token
+        self.refresh_token = :refresh_token
       end
 
       subject.access_token.should  == :access_token
