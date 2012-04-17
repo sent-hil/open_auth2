@@ -72,11 +72,11 @@ Access token is used to sign the request so the server can identify the client s
 access_token  = 'enter in your value'
 refresh_token = 'enter in your value'
 
-client.configure do
-  access_token  = access_token
+client.configure do |c|
+  c.access_token  = access_token
 
   # optional, for fb its same as above
-  refresh_token = refresh_token
+  c.refresh_token = refresh_token
 end
 ```
 
