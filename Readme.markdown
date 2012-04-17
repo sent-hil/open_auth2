@@ -147,11 +147,11 @@ client.connection.run_request(:get, path, nil, nil)
 
 Since various OAuth2 providers differ in their implementation, OpenAuth2 provides a simple plugin system to accomodate the differences, rather than 'one shoe fits all' approach. Facebook and Google plugins are builtin, but it is trivial to add new ones.
 
-There are three requirements:
+There are only three requirements:
 
   1. Should be under right namespace (OpenAuth2::Provider)
-  1. Contain Options hash
-  1. Contain #parse class method
+  1. Should contain #options method
+  1. Should contain #parse method
 
 To use the plugin, call `Config#provider=` with name of the provider. OpenAuth2 upcases and camelizes the name and looks for the constant under OpenAuth2::Provider namespace.
 
@@ -160,22 +160,26 @@ To use the plugin, call `Config#provider=` with name of the provider. OpenAuth2 
 ```ruby
 module OpenAuth2
   module Provider
-    module YourApi
+    class Default
 
-      # Provider::Base contains keys of various accepted
-      # Options, while Provider::Default contains the default options and
+      # Provider::Base contains keys of various accepted Options,
+      # while Provider::Default contains the default options and
       # their values. You can however override them here.
       #
-      Options = {
-        :authorize_url            => '',
-        :code_url                 => '',
-        :refresh_token_grant_name => '',
-      }
+      def options
+        {
+        :response_type            => 'code',
+        :access_token_grant_name  => 'authorization_code',
+        :refresh_token_grant_name => 'refresh_token',
+        :refresh_token_name       => :refresh_token,
+        :scope                    => [],
+        }
+      end
 
       # Called after AccessToken#get and #refresh response are received
       # from provider.
       #
-      def self.parse(config, response_body)
+      def parse(config, response_body)
         # parse the response body
         access_token            = response_body.gsub('access_token=', '')
 

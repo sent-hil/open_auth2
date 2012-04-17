@@ -49,7 +49,7 @@ module OpenAuth2
     end
 
     def parse(response_body)
-      @provider_const.parse(self, response_body)
+      @provider_const.new.parse(self, response_body)
     end
 
     private
@@ -70,25 +70,18 @@ module OpenAuth2
 
       @provider_const = full_string.constantize
     rescue NameError
-    end
-
-    def self.const_missing(name)
       raise UnknownProvider, "Known Providers: #{known_providers}"
     end
 
-    def self.known_providers
+    def known_providers
       known_providers = OpenAuth2::Provider.constants
       known_providers.delete(:Base)
 
       known_providers
     end
 
-    def known_providers
-      self.class.known_providers
-    end
-
     def copy_provider_keys
-      @provider_const::Options.each do |key,value|
+      @provider_const::new.options.each do |key,value|
         instance_variable_set("@#{key}", value)
       end
     end

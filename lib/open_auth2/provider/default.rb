@@ -5,14 +5,20 @@ module OpenAuth2
     # #initialize. We can then choose another provider or overwrite
     # them individually.
     #
-    module Default
-      Options = {
+    class Default
+      def options
+        {
         :response_type            => 'code',
         :access_token_grant_name  => 'authorization_code',
         :refresh_token_grant_name => 'refresh_token',
         :refresh_token_name       => :refresh_token,
         :scope                    => [],
-      }
+        }
+      end
+
+      def parse(config, response_body)
+        response_body
+      end
     end
   end
 end
