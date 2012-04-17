@@ -3,12 +3,12 @@ require 'spec_helper'
 
 describe 'Google Client' do
   let(:config) do
-    OpenAuth2::Config.new do
-      self.provider       = :google
-      self.access_token   = Creds::Google::AccessToken
-      self.refresh_token  = Creds::Google::RefreshToken
-      self.redirect_uri   = 'http://localhost:9393/google/callback'
-      self.path_prefix    = '/calendar/v3'
+    OpenAuth2::Config.new do |c|
+      c.provider       = :google
+      c.access_token   = Creds::Google::AccessToken
+      c.refresh_token  = Creds::Google::RefreshToken
+      c.redirect_uri   = 'http://localhost:9393/google/callback'
+      c.path_prefix    = '/calendar/v3'
     end
   end
 

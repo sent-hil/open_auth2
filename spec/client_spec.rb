@@ -3,9 +3,9 @@ require 'spec_helper'
 
 describe OpenAuth2::Client do
   let(:config) do
-    OpenAuth2::Config.new do
-      self.provider     = :facebook
-      self.access_token = :access_token
+    OpenAuth2::Config.new do |c|
+      c.provider     = :facebook
+      c.access_token = :access_token
     end
   end
 
@@ -19,9 +19,8 @@ describe OpenAuth2::Client do
     end
 
     it 'accepts config via block' do
-      rspec = self
-      subject = described_class.new do
-        self.config = rspec.config
+      subject = described_class.new do |c|
+        c.config = config
       end
 
       subject.config.should == config
@@ -34,9 +33,9 @@ describe OpenAuth2::Client do
 
   context '#configure' do
     it 'accepts a block to set/overwrite config' do
-      subject.configure do
-        self.access_token  = :access_token
-        self.refresh_token = :refresh_token
+      subject.configure do |c|
+        c.access_token  = :access_token
+        c.refresh_token = :refresh_token
       end
 
       subject.access_token.should  == :access_token

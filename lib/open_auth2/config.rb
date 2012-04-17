@@ -8,13 +8,13 @@ module OpenAuth2
     # Use to set config info.
     #
     # Examples:
-    #   OpenAuth2::Config.new do
-    #     provider = :default
+    #   OpenAuth2::Config.new do |c|
+    #     c.provider = :default
     #   end
     #
-    def initialize(&blk)
+    def initialize
       set_default_as_provider
-      instance_eval(&blk) if block_given?
+      yield self if block_given?
     end
 
     # Use to set config info.
@@ -22,14 +22,14 @@ module OpenAuth2
     # Examples:
     #   config = OpenAuth2::Config.new
     #
-    #   config.configure do
-    #     provider = :google
+    #   config.configure do |c|
+    #     c.provider = :google
     #   end
     #
     # Returns: self.
     #
-    def configure(&blk)
-      instance_eval(&blk) if block_given?
+    def configure
+      yield self if block_given?
     end
 
     # Finds provider's module & copies its Options key/value pairs.

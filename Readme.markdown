@@ -19,16 +19,16 @@ client_id     = 'enter in your own value'
 client_secret = 'enter in your own value'
 redirect_uri  = 'enter in your own value'
 
-config = OpenAuth2::Config.new do
+config = OpenAuth2::Config.new do |c|
   # indicate what kind of provider you want to use
   # Accepts: :google, :facebook or :default
 
-  provider       = :facebook
+  c.provider       = :facebook
 
-  client_id      = client_id
-  client_secret  = client_secret
-  redirect_uri   = redirect_uri
-  scope          = ['publish_stream']
+  c.client_id      = client_id
+  c.client_secret  = client_secret
+  c.redirect_uri   = redirect_uri
+  c.scope          = ['publish_stream']
 end
 ```
 
@@ -37,16 +37,16 @@ end
 Next, initialize a `client` object, which we'll use to make requests and pass in the `config` object we created earlier.
 
 ```ruby
-client = OpenAuth2::Client.new do
-  config = config
+client = OpenAuth2::Client.new do |c|
+  c.config = config
 end
 ```
 
 `Client#configure_connection` takes a block, which can be used to setup middleware like any other Faraday client, i.e:
 
 ```ruby
-client.configure_connection do
-  response :logger
+client.configure_connection do |c|
+  c.response :logger
 end
 ```
 
@@ -198,17 +198,17 @@ require 'json'
 access_token  = 'enter in your own value'
 refresh_token = 'enter in your own value'
 
-config = OpenAuth2::Config.new do
-  provider       = :google
-  access_token   = access_token
-  refresh_token  = refresh_token
-  scope          = ['https://www.googleapis.com/auth/calendar']
-  redirect_uri   = 'http://localhost:9393/google/callback'
-  path_prefix    = '/calendar/v3'
+config = OpenAuth2::Config.new do |c|
+  c.provider       = :google
+  c.access_token   = access_token
+  c.refresh_token  = refresh_token
+  c.scope          = ['https://www.googleapis.com/auth/calendar']
+  c.redirect_uri   = 'http://localhost:9393/google/callback'
+  c.path_prefix    = '/calendar/v3'
 end
 
-client = OpenAuth2::Client.new do
-  config = config
+client = OpenAuth2::Client.new do |c|
+  c.config = config
 end
 
 # get request

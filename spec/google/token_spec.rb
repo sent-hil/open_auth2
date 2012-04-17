@@ -3,13 +3,13 @@ require 'spec_helper'
 
 describe 'Google Token' do
   let(:config) do
-    OpenAuth2::Config.new do
-      self.provider       = :google
-      self.client_id      = Creds::Google::ClientId
-      self.client_secret  = Creds::Google::ClientSecret
-      self.code           = Creds::Google::Code
-      self.redirect_uri   = 'http://localhost:9393/google/callback'
-      self.scope          = ['https://www.googleapis.com/auth/calendar']
+    OpenAuth2::Config.new do |c|
+      c.provider       = :google
+      c.client_id      = Creds::Google::ClientId
+      c.client_secret  = Creds::Google::ClientSecret
+      c.code           = Creds::Google::Code
+      c.redirect_uri   = 'http://localhost:9393/google/callback'
+      c.scope          = ['https://www.googleapis.com/auth/calendar']
     end
   end
 

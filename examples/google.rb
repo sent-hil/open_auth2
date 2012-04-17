@@ -8,18 +8,18 @@ AccessToken  = nil
 RefreshToken = nil
 PostEmail    = nil
 
-@config = OpenAuth2::Config.new do
-  provider       = :google
-  code           = Code
-  client_id      = ClientId
-  client_secret  = ClientSecret
-  scope          = ['https://www.googleapis.com/auth/calendar']
-  redirect_uri   = 'http://localhost:9393/google/callback'
-  path_prefix    = '/calendar/v3'
+@config = OpenAuth2::Config.new do |c|
+  c.provider       = :google
+  c.code           = Code
+  c.client_id      = ClientId
+  c.client_secret  = ClientSecret
+  c.scope          = ['https://www.googleapis.com/auth/calendar']
+  c.redirect_uri   = 'http://localhost:9393/google/callback'
+  c.path_prefix    = '/calendar/v3'
 end
 
-@client = OpenAuth2::Client.new do
-  config = @config
+@client = OpenAuth2::Client.new do |c|
+  c.config = @config
 end
 
 @token = @client.token
