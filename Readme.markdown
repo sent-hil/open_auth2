@@ -1,11 +1,10 @@
 # OpenAuth2 [![Build Status](https://secure.travis-ci.org/sent-hil/OpenAuth2.png?branch=master)][travis]
 
-[travis]: 
+[travis]: http://travis-ci.org/sent-hil/OpenAuth2
 
 OpenAuth2 is a thin OAuth2 wrapper written on top of Faraday in Ruby. The goal is a simple, well documented, easy to use interface for all your OAuth2 needs.
 
 * This software is alpha, you're either very brave or very foolish to use this in production of rockets or anything else.
-* This Readme is best viewed in [DocumentUp](http://documentup.com/sent-hil/OpenAuth2).
 
 ## Config
 
