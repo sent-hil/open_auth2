@@ -69,17 +69,22 @@ module OpenAuth2
       full_string     = "OpenAuth2::Provider::#{provider_string}"
 
       @provider_const = full_string.constantize
-    rescue NameError => error
-      if error.to_s =~ /uninitialized constant/
-        raise UnknownProvider, "Known Providers: #{known_providers}"
-      end
+    rescue NameError
     end
 
-    def known_providers
+    def self.const_missing(name)
+      raise UnknownProvider, "Known Providers: #{known_providers}"
+    end
+
+    def self.known_providers
       known_providers = OpenAuth2::Provider.constants
       known_providers.delete(:Base)
 
       known_providers
+    end
+
+    def known_providers
+      self.class.known_providers
     end
 
     def copy_provider_keys
