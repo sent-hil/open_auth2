@@ -1,11 +1,10 @@
 module OpenAuth2
 
-  # Used to get Access/Refresh tokens from OAuth server.
+  # Gets Access/Refresh tokens from OAuth server.
   class Token
     extend DelegateToConfig
     include Connection
 
-    # Called internally from Client#token only.
     def initialize(config)
       @config      = config
       @faraday_url = authorize_url
@@ -22,7 +21,7 @@ module OpenAuth2
     #   token.build_code_url(:scope => 'publish_stream')
     #
     # Accepts:
-    #   params: (optional) Hash of additional config.
+    #   params - (optional) Hash of additional config.
     #
     # Returns: String (url).
     #
@@ -30,21 +29,15 @@ module OpenAuth2
       url = URI::HTTPS.build(:host  => host,
                              :path  => authorize_path,
                              :query => encoded_body(params))
-
       url.to_s
     end
 
-    # Make request to OAuth server for access token & ask @config to
-    # parse it. @config delegates to the appropriate provider.
-    #
-    # We ask @config since the format of response differs between
-    # OAuth servers widely.
+    # Makes request to OAuth server for access token & parses it by
+    # delegating to the appropriate provider.
     #
     # Accepts:
-    #   params: (optional) Hash of additional config to be sent with
-    #           request.
-    #
-    # Returns: ?.
+    #   params - (optional) Hash of additional config to be sent with
+    #                       request.
     #
     def get(params={})
       body        = get_body_hash(params)
@@ -53,14 +46,11 @@ module OpenAuth2
       parse(raw_request)
     end
 
-    # Make request to OAuth server to refresh the access token &
-    # ask @config to parse it.
+    # Makes request to OAuth server to refresh the access token.
     #
     # Accepts:
-    #   params: (optional) Hash of additional config to be sent with
-    #           request.
-    #
-    # Returns: ?.
+    #   params - (optional) Hash of additional config to be sent with
+    #                       request.
     #
     def refresh(params={})
       body        = refresh_body_hash(params)
@@ -82,7 +72,6 @@ module OpenAuth2
       URI.parse(code_url).host
     end
 
-    # Make travel safe.
     def encoded_body(params)
       URI.encode_www_form(url_body_hash(params))
     end

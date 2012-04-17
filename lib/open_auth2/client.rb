@@ -1,6 +1,6 @@
 module OpenAuth2
 
-  # Used to make GET/POST requests to OAuth server.
+  # Makes GET/POST requests to OAuth server.
   class Client
     extend DelegateToConfig
     include Connection
@@ -8,7 +8,7 @@ module OpenAuth2
     # Use to set config.
     #
     # Accepts:
-    #   config: (optional) OpenAuth2::Config object
+    #   config - (optional) OpenAuth2::Config object.
     #
     # Examples:
     #   config = OpenAuth2::Config.new do |c|
@@ -45,7 +45,7 @@ module OpenAuth2
       yield self if block_given?
     end
 
-    # We use this to get & refresh access/refresh tokens.
+    # Use this to get & refresh access/refresh tokens.
     #
     # Returns: Token object.
     #
@@ -61,8 +61,8 @@ module OpenAuth2
     #   client.build_code_url(:scope => 'publish_stream')
     #
     # Accepts:
-    #   params: (optional) Hash of additional config to be bundled into
-    #           the url.
+    #   params - (optional) Hash of additional config to be bundled into
+    #                       the url.
     #
     # Returns: String (url).
     #
@@ -70,8 +70,8 @@ module OpenAuth2
       token.build_code_url(params)
     end
 
-    # Makes GET request to OAuth server via Faraday. If access_token
-    # is available, we pass that along to identify ourselves.
+    # Makes GET request to OAuth server. If access_token is available
+    # we pass that along to identify ourselves.
     #
     # Accepts:
     #   hash
@@ -97,7 +97,7 @@ module OpenAuth2
       end
     end
 
-    # Makes POST request to OAuth server via Faraday.
+    # Makes POST request to OAuth server.
     #
     # Accepts:
     #   hash
@@ -142,11 +142,13 @@ module OpenAuth2
     # Examples:
     #   # public GET request
     #   path = "https://graph.facebook.com/cocacola"
-    #   client.run_request(verb: :get, path: path, body: nil, header: nil)
+    #   client.run_request(verb: :get, path: path, body: nil,
+    #                      header: nil)
     #
     #   # private GET request
     #   path = "/me/likes?access_token=..."
-    #   client.run_request(verb: :get, path: path, body: nil, header: nil)
+    #   client.run_request(verb: :get, path: path, body: nil,
+    #                      header: nil)
     #
     # Returns: Faraday response object.
     #
