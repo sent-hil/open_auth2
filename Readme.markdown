@@ -87,8 +87,8 @@ If you don't have an access token, we'll need to ask the server for it.
 
 ```ruby
 token = client.token
-token.configure_connection do
-  response :logger
+token.configure_connection do |c|
+  c.response :logger
 end
 
 # asks Facebook for access_token
