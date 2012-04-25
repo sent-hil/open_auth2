@@ -41,11 +41,11 @@ client = OpenAuth2::Client.new do |c|
 end
 ```
 
-`Client#configure_connection` takes a block, which can be used to setup middleware like any other Faraday client, i.e:
+`Client#connection` returns a `Faraday::Connection` object, which can be used to setup middleware.
 
 ```ruby
-client.configure_connection do |c|
-  c.response :logger
+client.connection do
+  response :logger
 end
 ```
 
@@ -83,12 +83,12 @@ end
 
 If you don't have an access token, we'll need to ask the server for it.
 
-`token#configure_connection` takes an block, just like `client#configure_connection`, which can be used to setup middleware like any other Faraday client.
+`token#configure` is similar to `client#connection`.
 
 ```ruby
 token = client.token
-token.configure_connection do |c|
-  c.response :logger
+token.configure do
+  response :logger
 end
 
 # asks Facebook for access_token
