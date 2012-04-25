@@ -85,7 +85,7 @@ describe OpenAuth2::Client do
         response :logger
       end
 
-      subject.connection.builder.handlers.should 
+      subject.connection.builder.handlers.should
         include(Faraday::Response::Logger)
     end
   end
