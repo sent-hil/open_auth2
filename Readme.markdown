@@ -1,6 +1,6 @@
-# OpenAuth2 [![Build Status](https://secure.travis-ci.org/sent-hil/OpenAuth2.png?branch=master)][travis]
+# open_auth2 [![Build Status](https://secure.travis-ci.org/sent-hil/open_auth2.png?branch=master)][travis]
 
-[travis]: http://travis-ci.org/sent-hil/OpenAuth2
+[travis]: http://travis-ci.org/sent-hil/open_auth2
 
 OpenAuth2 is a thin OAuth2 wrapper written on top of Faraday in Ruby. The goal is a simple, well documented, easy to use interface for all your OAuth2 needs.
 
