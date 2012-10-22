@@ -1,10 +1,9 @@
+require_relative 'client'
+
 module OpenAuth2
 
   # Gets Access/Refresh tokens from OAuth server.
-  class Token
-    extend DelegateToConfig
-    include Connection
-
+  class Token < Client
     def initialize(config)
       @config      = config
       @faraday_url = authorize_url
