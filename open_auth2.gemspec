@@ -2,13 +2,13 @@
 require './lib/open_auth2/version'
 
 Gem::Specification.new do |s|
-  s.name              = "OpenAuth2"
+  s.name              = "open_auth2"
   s.version           = OpenAuth2::VERSION
-  s.authors           = ["Senthil A"]
-  s.email             = ["senthil196@gmail.com"]
-  s.homepage          = "https://github.com/senthilnambi/OpenAuth2"
-  s.description       = %q{OpenAuth2 is a thin OAuth2 wrapper written on top of Faraday in Ruby.}
-  s.summary           = %q{OpenAuth2 is a thin OAuth2 wrapper written on top of Faraday in Ruby. The goal is a simple, well documented, easy to use interface for all your OAuth2 needs.}
+  s.authors           = ["sent-hil"]
+  s.email             = ["me@sent-hil.com"]
+  s.homepage          = "https://github.com/sent-hil/OpenAuth2"
+  s.description       = %q{OpenAuth2 is a simple OAuth2 client.}
+  s.summary           = %q{OpenAuth2 is a simple OAuth2 client written on top of Faraday in Ruby. The goal is a simple, well documented, easy to use interface for all your OAuth2 needs.}
 
   s.rubyforge_project = "OpenAuth2"
 
