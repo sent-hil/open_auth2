@@ -3,7 +3,8 @@ module OpenAuth2
   # Makes GET/POST requests to OAuth server.
   class Client
     extend DelegateToConfig
-    include Connection
+
+    attr_accessor :faraday_url
 
     # Use to set config.
     #
@@ -155,6 +156,29 @@ module OpenAuth2
     def run_request(hash)
       connection.run_request(hash[:verb], hash[:path], hash[:body],
                              hash[:header])
+    end
+
+    # Yields: Faraday object, so user can choose choose their own
+    # middleware.
+    #
+    # Examples:
+    #   config = OpenAuth2::Config.new
+    #   client = OpenAuth2::Client.new(config)
+    #
+    #   client.connection do
+    #     response :logger
+    #   end
+    #
+    # Returns: Faraday object.
+    #
+    def connection(&blk)
+      @connection ||= Faraday.new(:url => @faraday_url) do |builder|
+        builder.request :url_encoded
+        builder.adapter :net_http
+        builder.instance_eval(&blk) if block_given?
+      end
+
+      @connection
     end
   end
 end
