@@ -30,7 +30,7 @@ def gemspec_file
 end
 
 def gem_file
-  "OpenAuth2-#{version}.gem"
+  "open_auth2-#{version}.gem"
 end
 
 def replace_header(head, header_name)
@@ -86,7 +86,7 @@ task :release => :build do
   sh "git tag v#{version}"
   sh "git push origin master"
   sh "git push origin v#{version}"
-  sh "gem push pkg/OpenAuth2-#{version}.gem"
+  sh "gem push pkg/open-auth2-#{version}.gem"
 end
 
 desc "Build #{gem_file} into the pkg directory"
