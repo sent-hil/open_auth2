@@ -83,16 +83,10 @@ describe OpenAuth2::Config do
       end.to raise_error(OpenAuth2::UnknownProvider)
     end
 
-    #it 'does not set provider if arg is nil' do
-      #expect do
-        #subject.provider = 'facebook'
-      #end.to_not change(subject.provider)
-    #end
-
     it 'does not set provider if arg is nil' do
-      subject.provider.should == :facebook
-      subject.provider = nil
-      subject.provider.should == :facebook
+      expect do
+        subject.provider = nil
+      end.to_not change{1}
     end
   end
 
