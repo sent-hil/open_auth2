@@ -38,6 +38,8 @@ module OpenAuth2
     #   name - String/Symbol/Constant.
     #
     def provider=(name)
+      return unless name
+
       set_provider_vars(name)
       copy_provider_keys
     end

@@ -1,3 +1,5 @@
+require 'bundler/setup'
+
 require 'active_support/inflector'
 require 'faraday'
 require 'uri'
