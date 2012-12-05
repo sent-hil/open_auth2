@@ -1,8 +1,3 @@
-if ENV['COVERAGE']
-  require 'simplecov'
-  SimpleCov.start
-end
-
 require 'vcr'
 require 'timecop'
 require 'fixtures/creds'
