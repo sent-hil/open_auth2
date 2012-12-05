@@ -168,11 +168,11 @@ module OpenAuth2
       #
       def options
         {
-        :response_type            => 'code',
-        :access_token_grant_name  => 'authorization_code',
-        :refresh_token_grant_name => 'refresh_token',
-        :refresh_token_name       => :refresh_token,
-        :scope                    => [],
+          :response_type            => 'code',
+          :access_token_grant_name  => 'authorization_code',
+          :refresh_token_grant_name => 'refresh_token',
+          :refresh_token_name       => :refresh_token,
+          :scope                    => [],
         }
       end
 
@@ -181,7 +181,7 @@ module OpenAuth2
       #
       def parse(config, response_body)
         # parse the response body
-        access_token            = response_body.gsub('access_token=', '')
+        access_token = response_body.gsub('access_token=', '')
 
         # update config to reflect new information
         config.access_token     = access_token
