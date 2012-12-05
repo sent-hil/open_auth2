@@ -19,13 +19,13 @@ describe 'Facebook Token' do
 
   context '#build_code_url' do
     it 'returns url' do
-      url = "https://www.facebook.com/dialog/oauth?response_type=code&client_id=225722397503003&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F&scope=offline_access%2Cpublish_stream"
+      url = "https://www.facebook.com/dialog/oauth?response_type=code&client_id=369754433115833&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F&scope=offline_access%2Cpublish_stream"
 
       subject.build_code_url.should == url
     end
 
     it 'accepts params' do
-      url = "https://www.facebook.com/dialog/oauth?response_type=code&client_id=225722397503003&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F&scope=publish_stream"
+      url = "https://www.facebook.com/dialog/oauth?response_type=code&client_id=369754433115833&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F&scope=publish_stream"
 
       subject.build_code_url(:scope => 'publish_stream').should == url
     end
@@ -62,6 +62,10 @@ describe 'Facebook Token' do
 
     it 'sets #token_arrived_at' do
       subject.token_arrived_at.should == time
+    end
+
+    it 'sets #token_expires_at' do
+      subject.token_expires_at.should == '5183813'
     end
 
     it 'returns nil for #token_expired?' do

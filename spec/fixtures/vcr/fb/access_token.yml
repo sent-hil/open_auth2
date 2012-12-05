@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: https://graph.facebook.com:443/oauth/access_token
-    body: 
+    body: client_id=369754433115833&client_secret=117d2e4932154c8c408d3d170c81c2dc&code=AQDUWZ8BknOnhVVVS_weIge-05_9EkHwxUxKnT2wgWzcu43ye-s76zwD1QT6uZN2V3Krju4VUfZLazyvIX3rbKtsbdBQ1oKcGLPuZ0T8WhoEl6NgBsSyk9c93WnF_1R-6UtWcmDszuSeyWqlM-R19Db-P5vio88riQWDyHCgxShMrAp_6PF_g_ODLetA343lFo-vkmRZ8hec_nEhRHL-IZWp&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -25,12 +25,12 @@
       pragma:
       - no-cache
       x-fb-rev:
-      - '514925'
+      - '687022'
       x-fb-debug:
-      - P9I9NADR2jvZfeNcVamI71Cay4CB4KBqBXQYcJ4YYws=
+      - q75hAQKX0B4PuwLUYio+rAlbBLhJGeHNQRj1cf1P04c=
       date:
-      - Sat, 25 Feb 2012 21:49:01 GMT
+      - Wed, 05 Dec 2012 17:40:11 GMT
       content-length:
-      - '127'
-    body: access_token=AAADNSxdSLhsBALUJwhyMDYVTCV07ZAUyXIGwm2Bb9G5oudfZCYz2TcZB23ZABbFKTShb6JZC0aUVEsNfTMTRrqVWIrVyxNf4pElZAZCUWnd9QZDZD
+      - '140'
+    body: access_token=AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD&expires=5183813
     http_version: '1.1'

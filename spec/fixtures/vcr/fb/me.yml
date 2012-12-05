@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: :get
-    uri: https://graph.facebook.com:443/me/likes?access_token=AAADNSxdSLhsBALUJwhyMDYVTCV07ZAUyXIGwm2Bb9G5oudfZCYz2TcZB23ZABbFKTShb6JZC0aUVEsNfTMTRrqVWIrVyxNf4pElZAZCUWnd9QZDZD
+    uri: https://graph.facebook.com:443/me/likes?access_token=AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD
     body: 
     headers:
       accept-encoding:
@@ -19,18 +19,18 @@
       content-type:
       - text/javascript; charset=UTF-8
       etag:
-      - ! '"c60f2e60a5df83da5585ebda43b554fcf98a0486"'
+      - ! '"7363db52a3026cdc124c3fac4cbe7422bfb540c9"'
       expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       pragma:
       - no-cache
       x-fb-rev:
-      - '514925'
+      - '686861'
       x-fb-debug:
-      - KrTg1q4nx3Apmj1vpbKXn0k7W3EmEsfq0rt2uQLSJ/g=
+      - JLgqcDOsvhxPi3LCRwCVhisZJsR4NlO5L8MUmmVYY54=
       date:
-      - Sat, 25 Feb 2012 22:08:52 GMT
+      - Wed, 05 Dec 2012 17:40:11 GMT
       content-length:
-      - '370'
-    body: ! '{"data":[{"name":"EmiBalbuena.com","category":"Personal website","id":"197230593668050","created_time":"2011-10-06T22:00:02+0000"}],"paging":{"next":"https:\/\/graph.facebook.com\/me\/likes?access_token=AAADNSxdSLhsBALUJwhyMDYVTCV07ZAUyXIGwm2Bb9G5oudfZCYz2TcZB23ZABbFKTShb6JZC0aUVEsNfTMTRrqVWIrVyxNf4pElZAZCUWnd9QZDZD&limit=5000&offset=5000&__after_id=197230593668050"}}'
+      - '380'
+    body: ! '{"data":[{"category":"Personal website","name":"EmiBalbuena.com","id":"197230593668050","created_time":"2011-10-06T22:00:02+0000"}],"paging":{"next":"https:\/\/graph.facebook.com\/100002930317357\/likes?access_token=AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD&limit=5000&offset=5000&__after_id=197230593668050"}}'
     http_version: '1.1'

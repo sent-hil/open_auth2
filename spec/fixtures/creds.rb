@@ -1,9 +1,9 @@
 module Creds
   module Facebook
-    ClientId     = '225722397503003'
-    ClientSecret = 'c5ede842aaa3a3f377ca56464acc37fe'
-    Code         = 'AQB2Z6BvTFr9_VhMiP6eVLCIxUb26ym6mjuie4h2rbxGyN3QjMzVB_mozUfTCqJpH4Ta7MeRRxF7-sWQ9wdwR6iic6Mbb5hTtg1bj2nHBo85iCPfel4q-Blf3mp8xv0aKGw6mgYVMBfW1MhJC4qDgKE8pTgi7230Vgthjs7LWKBIcDJtonjUAFldhcKVrPZSx90'
-    AccessToken  = 'AAADNSxdSLhsBALUJwhyMDYVTCV07ZAUyXIGwm2Bb9G5oudfZCYz2TcZB23ZABbFKTShb6JZC0aUVEsNfTMTRrqVWIrVyxNf4pElZAZCUWnd9QZDZD'
+    ClientId     = '369754433115833'
+    ClientSecret = '117d2e4932154c8c408d3d170c81c2dc'
+    Code         = 'AQDUWZ8BknOnhVVVS_weIge-05_9EkHwxUxKnT2wgWzcu43ye-s76zwD1QT6uZN2V3Krju4VUfZLazyvIX3rbKtsbdBQ1oKcGLPuZ0T8WhoEl6NgBsSyk9c93WnF_1R-6UtWcmDszuSeyWqlM-R19Db-P5vio88riQWDyHCgxShMrAp_6PF_g_ODLetA343lFo-vkmRZ8hec_nEhRHL-IZWp'
+    AccessToken = 'AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD'
   end
 
   module Google

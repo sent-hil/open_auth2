@@ -14,11 +14,13 @@ module OpenAuth2
       end
 
       def parse(config, response_body)
-        access_token            = response_body.gsub('access_token=', '')
-        config.access_token     = access_token
-        config.refresh_token    = access_token
+        resp = response_body.gsub('access_token=', '')
+        resp = resp.split('&expires=')
+
+        config.access_token     = resp[0]
+        config.refresh_token    = resp[0]
         config.token_arrived_at = Time.now
-        config.token_expires_at = "60 days?"
+        config.token_expires_at = resp[1]
       end
     end
   end
