@@ -59,7 +59,7 @@ module OpenAuth2
     end
 
     def token_expired?
-      token_expires_at > Time.now
+      Time.now > token_expires_at
     rescue
       nil
     end

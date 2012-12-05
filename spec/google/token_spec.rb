@@ -60,7 +60,7 @@ describe 'Google Token' do
     end
 
     it 'returns false for #token_expired?' do
-      subject.token_expired?.should == true
+      subject.token_expired?.should == false
     end
   end
 

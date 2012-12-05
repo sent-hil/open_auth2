@@ -20,7 +20,7 @@ module OpenAuth2
         config.access_token     = resp[0]
         config.refresh_token    = resp[0]
         config.token_arrived_at = Time.now
-        config.token_expires_at = resp[1]
+        config.token_expires_at = (Time.now.to_date+60).to_time
       end
     end
   end

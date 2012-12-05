@@ -65,11 +65,11 @@ describe 'Facebook Token' do
     end
 
     it 'sets #token_expires_at' do
-      subject.token_expires_at.should == '5183813'
+      subject.token_expires_at.to_s.should == '2013-02-19 00:00:00 -0500'
     end
 
     it 'returns nil for #token_expired?' do
-      subject.token_expired?.should == nil
+      subject.token_expired?.should == false
     end
   end
 
