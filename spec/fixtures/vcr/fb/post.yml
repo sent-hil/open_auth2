@@ -2,11 +2,13 @@
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: :post
-    uri: https://graph.facebook.com:443/me/feed?message=%27From%20OpenAuth2%27&access_token=AAADNSxdSLhsBALUJwhyMDYVTCV07ZAUyXIGwm2Bb9G5oudfZCYz2TcZB23ZABbFKTShb6JZC0aUVEsNfTMTRrqVWIrVyxNf4pElZAZCUWnd9QZDZD
+    uri: https://graph.facebook.com:443/me/feed?message=%27From+OpenAuth2%27&access_token=AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD
     body: 
     headers:
       content-type:
       - application/json
+      content-length:
+      - '0'
   response: !ruby/struct:VCR::Response
     status: !ruby/struct:VCR::ResponseStatus
       code: 200
@@ -23,12 +25,12 @@
       pragma:
       - no-cache
       x-fb-rev:
-      - '518267'
+      - '687022'
       x-fb-debug:
-      - 1+GpoD6kWif2JDnTaD/XeITjokumXXb6BbGmwAciEiA=
+      - yVOZiZ0mtZ74EJ5/YvSHR4sQGk6b9YWj2IQhK5pr7hI=
       date:
-      - Sat, 03 Mar 2012 01:37:49 GMT
+      - Wed, 05 Dec 2012 17:53:16 GMT
       content-length:
       - '40'
-    body: ! '{"id":"100002930317357_200068986767444"}'
+    body: ! '{"id":"100002930317357_327139267393748"}'
     http_version: '1.1'
