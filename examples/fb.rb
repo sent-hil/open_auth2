@@ -1,14 +1,15 @@
 require_relative '../lib/open_auth2'
 
-ClientId     = '369754433115833'
-ClientSecret = '117d2e4932154c8c408d3d170c81c2dc'
-Code         = ''
-AccessToken  = ''
+require 'yaml'
+Creds = YAML.load_file('spec/fixtures/creds.yml')
+
+Code        = Creds['Facebook']['Code']
+AccessToken = Creds['Facebook']['AccessToken']
 
 @config = OpenAuth2::Config.new do |c|
   c.provider       = :facebook
-  c.client_id      = ClientId
-  c.client_secret  = ClientSecret
+  c.client_id      = Creds['Facebook']['ClientId']
+  c.client_secret  = Creds['Facebook']['ClientSecret']
   c.code           = Code
   c.access_token   = AccessToken
   c.redirect_uri   = 'http://localhost:9393/'

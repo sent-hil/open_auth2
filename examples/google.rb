@@ -1,8 +1,9 @@
 require_relative '../lib/open_auth2'
 require 'json'
 
-ClientId     = '948773240950.apps.googleusercontent.com'
-ClientSecret = 'MTkeuqOhFTbfRbd27BcEROTl'
+require 'yaml'
+Creds = YAML.load_file('spec/fixtures/creds.yml')
+
 Code         = nil
 AccessToken  = 'ya29.AHES6ZRL6dKYn5HvssNQvH15KXTc76jCd9KC6Wfsir74whQ'
 RefreshToken = '1/2hTXHN9FULj7v_hVOIoyHn6BpOQS6uDOw-xllInXnTU'
@@ -10,9 +11,9 @@ PostEmail    = 'senthil196@gmail.com'
 
 @config = OpenAuth2::Config.new do |c|
   c.provider       = :google
+  c.client_id      = Creds['Google']['ClientId']
+  c.client_secret  = Creds['Google']['ClientSecret']
   c.code           = Code
-  c.client_id      = ClientId
-  c.client_secret  = ClientSecret
   c.access_token   = AccessToken
   c.refresh_token  = RefreshToken
   c.scope          = ['https://www.googleapis.com/auth/calendar']
