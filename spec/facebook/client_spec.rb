@@ -10,7 +10,7 @@ describe 'Facebook Client' do
 
   context '#get' do
     it 'makes public request' do
-      VCR.use_cassette('fb/cocacola') do
+      VCR.use_cassette('facebook/cocacola') do
         request = subject.get(:path => '/cocacola')
         request.status.should == 200
       end
@@ -21,7 +21,7 @@ describe 'Facebook Client' do
         c.access_token = Creds['Facebook']['AccessToken']
       end
 
-      VCR.use_cassette('fb/me') do
+      VCR.use_cassette('facebook/me') do
         request = subject.get(:path => '/me/likes')
         request.status.should == 200
       end
@@ -30,7 +30,7 @@ describe 'Facebook Client' do
 
   context '#run_request' do
     it 'makes public GET request' do
-      VCR.use_cassette('fb/cocacola') do
+      VCR.use_cassette('facebook/cocacola') do
         request = subject.run_request(:verb => :get, :path => '/cocacola',
                                       :body => nil , :header => nil)
         request.status.should == 200
@@ -38,7 +38,7 @@ describe 'Facebook Client' do
     end
 
     it 'makes private GET request' do
-      VCR.use_cassette('fb/me') do
+      VCR.use_cassette('facebook/me') do
         path = "/me/likes?access_token=#{Creds['Facebook']['AccessToken']}"
         request = subject.run_request(:verb => :get, :path   => path,
                                       :body => nil , :header => nil)
@@ -59,7 +59,7 @@ describe 'Facebook Client' do
     end
 
     it 'makes request' do
-      VCR.use_cassette('fb/post') do
+      VCR.use_cassette('facebook/post') do
         content_type = 'application/json'
         request = subject.post(:path         => post_url,
                                :content_type => content_type)

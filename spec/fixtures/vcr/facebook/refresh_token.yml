@@ -1,0 +1,36 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: https://graph.facebook.com:443/oauth/access_token
+    body: client_id=369754433115833&client_secret=117d2e4932154c8c408d3d170c81c2dc&grant_type=fb_exchange_token&fb_exchange_token=AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+      accept:
+      - application/json
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      access-control-allow-origin:
+      - ! '*'
+      cache-control:
+      - private, no-cache, no-store, must-revalidate
+      content-type:
+      - text/plain; charset=UTF-8
+      expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      pragma:
+      - no-cache
+      x-fb-rev:
+      - '688120'
+      x-fb-debug:
+      - bEmPzrTb6IB4aW3BgsjSol10bqislCP+1Nr/W72uylw=
+      date:
+      - Thu, 06 Dec 2012 23:38:02 GMT
+      content-length:
+      - '140'
+    body: access_token=AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD&expires=5162672
+    http_version: '1.1'

@@ -26,7 +26,7 @@ describe 'Facebook Token' do
 
   context '#get' do
     let(:get_token) do
-      VCR.use_cassette('fb/access_token') do
+      VCR.use_cassette('facebook/access_token') do
         subject.get
       end
     end
@@ -58,7 +58,7 @@ describe 'Facebook Token' do
     end
 
     it 'sets #token_expires_at' do
-      subject.token_expires_at.to_s.should == '2013-02-19 00:00:00 -0500'
+      subject.token_expires_at.to_s.should == (time+5184000).to_s
     end
 
     it 'returns nil for #token_expired?' do
@@ -72,7 +72,7 @@ describe 'Facebook Token' do
         c.refresh_token = Creds['Facebook']['AccessToken']
       end
 
-      VCR.use_cassette('fb/refresh_token') do
+      VCR.use_cassette('facebook/refresh_token') do
         subject.refresh
       end
     end
