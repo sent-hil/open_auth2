@@ -37,6 +37,9 @@ if ENV['RESET_TOKENS']
       token.get
       access_token = config.access_token
 
+      response = visit(url)
+      code = current_url.split('=')[1].split('#')[0]
+
       Creds['Facebook']['Code'] = code
       Creds['Facebook']['AccessToken'] = access_token
 
