@@ -55,7 +55,7 @@ describe 'Facebook Client' do
     end
 
     let(:post_url) do
-      "/me/feed?message='From OpenAuth2 at #{Time.now}'"
+      "/me/feed?message='From OpenAuth2'"
     end
 
     it 'makes request' do
