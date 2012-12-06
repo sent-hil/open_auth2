@@ -63,7 +63,7 @@ Gem::Specification.new do |s|
     spec/config_spec.rb
     spec/facebook/client_spec.rb
     spec/facebook/token_spec.rb
-    spec/fixtures/creds.rb
+    spec/fixtures/creds.yml
     spec/fixtures/vcr/fb/access_token.yml
     spec/fixtures/vcr/fb/cocacola.yml
     spec/fixtures/vcr/fb/me.yml
@@ -75,6 +75,7 @@ Gem::Specification.new do |s|
     spec/fixtures/vcr/goog/refresh_token.yml
     spec/google/client_spec.rb
     spec/google/token_spec.rb
+    spec/reset_tokens.rb
     spec/spec_helper.rb
     spec/token_spec.rb
   ]
