@@ -3,14 +3,7 @@ require 'spec_helper'
 
 describe 'Google Token' do
   let(:config) do
-    OpenAuth2::Config.new do |c|
-      c.provider       = :google
-      c.client_id      = Creds::Google::ClientId
-      c.client_secret  = Creds::Google::ClientSecret
-      c.code           = Creds::Google::Code
-      c.redirect_uri   = 'http://localhost:9393/google/callback'
-      c.scope          = ['https://www.googleapis.com/auth/calendar']
-    end
+    google_config
   end
 
   subject do
@@ -48,11 +41,11 @@ describe 'Google Token' do
     end
 
     it 'sets #access_token' do
-      subject.access_token.should == Creds::Google::AccessToken
+      subject.access_token.should == Creds['Google']['AccessToken']
     end
 
     it 'sets #refresh_token' do
-      subject.refresh_token.should == Creds::Google::RefreshToken
+      subject.refresh_token.should == Creds['Google']['RefreshToken']
     end
 
     it 'sets #token_arrived_at' do
@@ -67,7 +60,7 @@ describe 'Google Token' do
   context '#refresh' do
     let(:refresh_token) do
       config.configure do |c|
-        c.refresh_token = Creds::Google::RefreshToken
+        c.refresh_token = Creds['Google']['RefreshToken']
       end
 
       VCR.use_cassette('goog/refresh_token') do
@@ -81,7 +74,7 @@ describe 'Google Token' do
 
     it 'sets new #access_token' do
       refresh_token
-      subject.access_token.should == Creds::Google::NewAccessToken
+      subject.access_token.should == Creds['Google']['NewAccessToken']
     end
   end
 end

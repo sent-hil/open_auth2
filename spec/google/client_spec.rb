@@ -3,13 +3,7 @@ require 'spec_helper'
 
 describe 'Google Client' do
   let(:config) do
-    OpenAuth2::Config.new do |c|
-      c.provider       = :google
-      c.access_token   = Creds::Google::AccessToken
-      c.refresh_token  = Creds::Google::RefreshToken
-      c.redirect_uri   = 'http://localhost:9393/google/callback'
-      c.path_prefix    = '/calendar/v3'
-    end
+    google_config
   end
 
   subject { OpenAuth2::Client.new(config) }
@@ -45,7 +39,7 @@ describe 'Google Client' do
 
     it 'POST request via #run_request' do
       header   = {"Content-Type" => "application/json"}
-      full_url = "#{post_url}?access_token=#{Creds::Google::AccessToken}"
+      full_url = "#{post_url}?access_token=#{Creds['Google']['AccessToken']}"
 
       VCR.use_cassette('goog/post') do
         request = subject.run_request(:verb   => :post,

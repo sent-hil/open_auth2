@@ -3,14 +3,7 @@ require 'spec_helper'
 
 describe 'Facebook Token' do
   let(:config) do
-    OpenAuth2::Config.new do |c|
-      c.provider       = :facebook
-      c.client_id      = Creds::Facebook::ClientId
-      c.client_secret  = Creds::Facebook::ClientSecret
-      c.code           = Creds::Facebook::Code
-      c.redirect_uri   = 'http://localhost:9393/'
-      c.scope          = ['offline_access', 'publish_stream']
-    end
+    facebook_config
   end
 
   subject do
@@ -53,11 +46,11 @@ describe 'Facebook Token' do
     end
 
     it 'sets #access_token' do
-      subject.access_token.should == Creds::Facebook::AccessToken
+      subject.access_token.should == Creds['Facebook']['AccessToken']
     end
 
     it 'sets #refresh_token' do
-      subject.refresh_token.should == Creds::Facebook::AccessToken
+      subject.refresh_token.should == Creds['Facebook']['AccessToken']
     end
 
     it 'sets #token_arrived_at' do
@@ -76,7 +69,7 @@ describe 'Facebook Token' do
   context '#refresh' do
     let(:refresh_token) do
       config.configure do |c|
-        c.refresh_token = Creds::Facebook::AccessToken
+        c.refresh_token = Creds['Facebook']['AccessToken']
       end
 
       VCR.use_cassette('fb/refresh_token') do
@@ -90,7 +83,7 @@ describe 'Facebook Token' do
 
     it 'sets new #access_token' do
       refresh_token
-      subject.access_token.should == Creds::Facebook::AccessToken
+      subject.access_token.should == Creds['Facebook']['AccessToken']
     end
   end
 end
