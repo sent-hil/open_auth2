@@ -129,6 +129,17 @@ module OpenAuth2
       end
     end
 
+    def put(hash)
+      connection.post do |conn|
+        if hash[:content_type]
+          conn.headers["Content-Type"] = hash[:content_type]
+        end
+
+        conn.url(hash[:path], :access_token => access_token)
+        conn.body = hash[:body]
+      end
+    end
+
     # Makes request to OAuth server via Faraday#run_request. It takes
     # Hash since I can never remember the order in which to pass the
     # arguments.
