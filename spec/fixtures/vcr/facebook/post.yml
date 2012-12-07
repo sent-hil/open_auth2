@@ -11,28 +11,26 @@
       - '0'
   response: !ruby/struct:VCR::Response
     status: !ruby/struct:VCR::ResponseStatus
-      code: 400
-      message: Bad Request
+      code: 200
+      message: OK
     headers:
       access-control-allow-origin:
       - ! '*'
       cache-control:
-      - no-store
+      - private, no-cache, no-store, must-revalidate
       content-type:
       - text/javascript; charset=UTF-8
       expires:
       - Sat, 01 Jan 2000 00:00:00 GMT
       pragma:
       - no-cache
-      www-authenticate:
-      - OAuth "Facebook Platform" "invalid_request" "(#506) Duplicate status message"
       x-fb-rev:
-      - '688120'
+      - '688594'
       x-fb-debug:
-      - A1SRDE2ctYTlMKAE9chMFqdEJB7AIhPX3a3xTxUn6mE=
+      - LjE2P9NBZo/RJx4JXqo6VHvo9JNBzuqk0jKAS+Q0ecM=
       date:
-      - Thu, 06 Dec 2012 23:38:01 GMT
+      - Fri, 07 Dec 2012 01:13:58 GMT
       content-length:
-      - '122'
-    body: ! '{"error":{"message":"(#506) Duplicate status message","type":"OAuthException","code":506,"error_data":{"kError":1455006}}}'
+      - '40'
+    body: ! '{"id":"100002930317357_327589514015390"}'
     http_version: '1.1'

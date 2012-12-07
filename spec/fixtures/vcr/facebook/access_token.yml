@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: https://graph.facebook.com:443/oauth/access_token
-    body: client_id=369754433115833&client_secret=117d2e4932154c8c408d3d170c81c2dc&code=AQDq-zbIb9lFEcG5Rr3RJ-gIjlfYagtGM3ETH8bXKcnIKKTFBJRh1QSXeWiqiJN1sz3N6gUtpAtjL6XkCPYWaixPlrK5F3e3IVH8c2IXGhs8hyrncY-WB-9w2mNf3RcrJeV4vTMhlOnNa3RZhuRIf1tOmd3Rgis_CtjzTPT_ProYnP2oeAvv27zyC8Sr5rwYFmHxZIRk35ip2IOdhQ1WawUY&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F
+    body: client_id=369754433115833&client_secret=117d2e4932154c8c408d3d170c81c2dc&code=AQAKTTEMore2cPIfJwpaHmL7PVRYV7AwhcbqKftmIYCngXmSFD1F0aKkM-hfX96JjI_xAiwLeOSas_C-r1kzTvqQb8A_8u93s96aZNzlK1k3y_i6B8qKZ0OfbIIjagS5sWDPtGOvdE-wsAFn6BfqhJjPU2ixFAfGOTJ3-tLxZdbADjnInJj3AeN_o3pwWSawH2DlCaGJsRjY3i0dfuhez7FQ&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -25,12 +25,12 @@
       pragma:
       - no-cache
       x-fb-rev:
-      - '688120'
+      - '688594'
       x-fb-debug:
-      - 6Fwx4p2hMX7tLBel3SBMSuwYBNUiFOJlrC70uHs4Hs0=
+      - tXD6Apsoti/ChncnirM8bf6RvYBfdabKkTR01Qr/PxU=
       date:
-      - Thu, 06 Dec 2012 23:38:01 GMT
+      - Fri, 07 Dec 2012 00:59:43 GMT
       content-length:
       - '140'
-    body: access_token=AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD&expires=5162673
+    body: access_token=AAAFQSimj1rkBAEEzYjDGNyIag6EZBSwYHl2jXDJlmIdAjc3nlXpkajStjqhPyrSLZBUQ8sfV6H40LktIa1zvAILHZCZBgJgPowtiJ2K9lQZDZD&expires=5157771
     http_version: '1.1'
