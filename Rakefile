@@ -87,7 +87,7 @@ desc "Build #{gem_file} into the pkg directory"
 task :build => :gemspec do
   sh "mkdir -p pkg"
   sh "gem build #{gemspec_file}"
-  #sh "mv #{gem_file} pkg"
+  sh "mv #{gem_file} pkg"
 end
 
 desc "Generate #{gemspec_file}"
@@ -109,6 +109,7 @@ task :gemspec do
     sort.
     reject { |file| file =~ /^\./ }.
     reject { |file| file =~ /^(rdoc|pkg)/ }.
+    reject { |file| file =~ /fb/ }.
     map { |file| "    #{file}" }.
     join("\n")
 

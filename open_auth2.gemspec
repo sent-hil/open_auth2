@@ -44,7 +44,6 @@ Gem::Specification.new do |s|
     Rakefile
     Readme.markdown
     Spec.markdown
-    examples/fb.rb
     examples/google.rb
     lib/open_auth2.rb
     lib/open_auth2/client.rb
@@ -64,11 +63,11 @@ Gem::Specification.new do |s|
     spec/facebook/client_spec.rb
     spec/facebook/token_spec.rb
     spec/fixtures/creds.yml
-    spec/fixtures/vcr/fb/access_token.yml
-    spec/fixtures/vcr/fb/cocacola.yml
-    spec/fixtures/vcr/fb/me.yml
-    spec/fixtures/vcr/fb/post.yml
-    spec/fixtures/vcr/fb/refresh_token.yml
+    spec/fixtures/vcr/facebook/access_token.yml
+    spec/fixtures/vcr/facebook/cocacola.yml
+    spec/fixtures/vcr/facebook/me.yml
+    spec/fixtures/vcr/facebook/post.yml
+    spec/fixtures/vcr/facebook/refresh_token.yml
     spec/fixtures/vcr/goog/access_token.yml
     spec/fixtures/vcr/goog/list.yml
     spec/fixtures/vcr/goog/post.yml
