@@ -147,11 +147,12 @@ client.connection.run_request(:get, path, nil, nil)
 
 Since various OAuth2 providers differ in their implementation, OpenAuth2 provides a simple plugin system to accomodate the differences, rather than 'one shoe fits all' approach. Facebook and Google plugins are builtin, but it is trivial to add new ones.
 
-There are only three requirements:
+There are only four requirements:
 
   1. Should be under right namespace (OpenAuth2::Provider)
-  1. Should contain #options method
-  1. Should contain #parse method
+  1. Can contain #options method
+  1. Can contain #parse method
+  1. Can contain #post method
 
 To use the plugin, call `Config#provider=` with name of the provider. OpenAuth2 upcases and camelizes the name and looks for the constant under OpenAuth2::Provider namespace.
 
@@ -177,12 +178,12 @@ module OpenAuth2
       end
 
       # Used to parse access_token.
-      def parse(config, response_body)
+      def parse(response_body)
         response_body
       end
 
       # Used to do 'POST' requests.
-      def post(config, hash)
+      def post(hash)
         access_token = hash.delete(:access_token) || config.access_token
 
         hash[:connection].post do |conn|

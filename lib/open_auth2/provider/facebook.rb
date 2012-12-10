@@ -13,7 +13,7 @@ module OpenAuth2
         }
       end
 
-      def parse(config, response_body)
+      def parse(response_body)
         resp = response_body.gsub('access_token=', '')
         resp = resp.split('&expires=')
 
@@ -23,7 +23,7 @@ module OpenAuth2
         config.token_expires_at = (Time.now.to_date+60).to_time
       end
 
-      def post(config, hash)
+      def post(hash)
         conn = hash.delete(:connection)
         path = hash.delete(:path)
         actk = hash.delete(:access_token) || config.access_token

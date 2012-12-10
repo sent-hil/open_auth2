@@ -6,6 +6,12 @@ module OpenAuth2
     # them individually.
     #
     class Default
+      attr_accessor :config
+
+      def initialize(config)
+        @config = config
+      end
+
       def options
         {
           :response_type            => 'code',
@@ -16,11 +22,11 @@ module OpenAuth2
         }
       end
 
-      def parse(config, response_body)
+      def parse(response_body)
         response_body
       end
 
-      def post(config, hash)
+      def post(hash)
         access_token = hash.delete(:access_token) || config.access_token
 
         hash[:connection].post do |conn|

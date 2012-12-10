@@ -12,7 +12,7 @@ module OpenAuth2
         }
       end
 
-      def parse(config, body)
+      def parse(body)
         json                    = JSON.parse(body)
         config.access_token     = json['access_token']
         config.token_arrived_at = Time.now

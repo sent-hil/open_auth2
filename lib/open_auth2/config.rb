@@ -52,7 +52,7 @@ module OpenAuth2
 
     # Delegates missing methods to provider.
     def method_missing(name, *args, &blk)
-      @provider_const.new.send(name, self, *args)
+      @provider_const.new(self).send(name, *args)
     end
 
     private
@@ -84,8 +84,8 @@ module OpenAuth2
     end
 
     def copy_provider_keys
-      @provider_const::new.options.each do |key,value|
-        instance_variable_set("@#{key}", value)
+      @provider_const::new(config).options.each do |k,v|
+        instance_variable_set("@#{k}", v)
       end
     end
 
