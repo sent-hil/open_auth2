@@ -1,3 +1,6 @@
+require 'pry'
+require 'pry-debugger'
+
 require 'vcr'
 require 'timecop'
 

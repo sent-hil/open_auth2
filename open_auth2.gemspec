@@ -35,7 +35,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'fakeweb', '~> 1.3'
   s.add_development_dependency 'timecop', '~> 0.3'
   s.add_development_dependency 'pry',     '~> 0.9'
-  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'pry-debugger', '~> 0.2'
+  s.add_development_dependency 'capybara', '~> 2.0.1'
 
   # = MANIFEST =
   s.files = %w[
