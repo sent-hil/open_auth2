@@ -19,6 +19,19 @@ module OpenAuth2
       def parse(config, response_body)
         response_body
       end
+
+      def post(config, hash)
+        access_token = hash.delete(:access_token) || config.access_token
+
+        hash[:connection].post do |conn|
+          if hash[:content_type]
+            conn.headers["Content-Type"] = hash[:content_type]
+          end
+
+          conn.url(hash[:path], :access_token => access_token)
+          conn.body = hash[:body]
+        end
+      end
     end
   end
 end

@@ -160,12 +160,12 @@ To use the plugin, call `Config#provider=` with name of the provider. OpenAuth2 
 ```ruby
 module OpenAuth2
   module Provider
-    class Default
 
-      # Provider::Base contains keys of various accepted Options,
-      # while Provider::Default contains the default options and
-      # their values. You can however override them here.
-      #
+    # Provider::Base contains keys of various accepted Options,
+    # while Provider::Default contains the default options and
+    # their values. You can however override them here.
+    #
+    class Default
       def options
         {
           :response_type            => 'code',
@@ -176,16 +176,23 @@ module OpenAuth2
         }
       end
 
-      # Called after AccessToken#get and #refresh response are received
-      # from provider.
-      #
+      # Used to parse access_token.
       def parse(config, response_body)
-        # parse the response body
-        access_token = response_body.gsub('access_token=', '')
+        response_body
+      end
 
-        # update config to reflect new information
-        config.access_token     = access_token
-        config.token_arrived_at = Time.now
+      # Used to do 'POST' requests.
+      def post(config, hash)
+        access_token = hash.delete(:access_token) || config.access_token
+
+        hash[:connection].post do |conn|
+          if hash[:content_type]
+            conn.headers["Content-Type"] = hash[:content_type]
+          end
+
+          conn.url(hash[:path], :access_token => access_token)
+          conn.body = hash[:body]
+        end
       end
     end
   end

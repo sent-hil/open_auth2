@@ -50,8 +50,9 @@ module OpenAuth2
       set_default_as_provider
     end
 
-    def parse(response_body)
-      @provider_const.new.parse(self, response_body)
+    # Delegates missing methods to provider.
+    def method_missing(name, *args, &blk)
+      @provider_const.new.send(name, self, *args)
     end
 
     private

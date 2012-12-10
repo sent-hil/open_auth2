@@ -102,31 +102,26 @@ module OpenAuth2
     #
     # Accepts:
     #   hash
-    #     :path         - (required)
-    #     :content_type - (optional)
-    #     :body         - (optional)
+    #     :path - (required)
     #
     # Examples:
+    #
     #   # using query params (fb uses this)
-    #   client.post(:path => "/me/feed?message='From OpenAuth2'")
+    #   # any params except path is encoded & sent with req
+    #   #
+    #   client.post(:path    => '/me/feed',
+    #               :message => 'From OpenAuth2')
     #
     #   # using body (google uses this)
-    #   body = JSON.dump(:message => "From OpenAuth2)
-    #   client.post(:path         => "/me/feed,
+    #   body = JSON.dump(:message => 'From OpenAuth2')
+    #   client.post(:path         => '/me/feed',
     #               :body         => body,
     #               :content_type => 'application/json')
     #
     # Returns: Faraday response object.
     #
     def post(hash)
-      connection.post do |conn|
-        if hash[:content_type]
-          conn.headers["Content-Type"] = hash[:content_type]
-        end
-
-        conn.url(hash[:path], :access_token => access_token)
-        conn.body = hash[:body]
-      end
+      config.post(hash.merge(:connection => connection))
     end
 
     # Makes request to OAuth server via Faraday#run_request. It takes

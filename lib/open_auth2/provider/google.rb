@@ -1,6 +1,6 @@
 module OpenAuth2
   module Provider
-    class Google
+    class Google < Default
       def options
         {
           :authorize_url  => 'https://accounts.google.com',

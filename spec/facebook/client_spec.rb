@@ -55,14 +55,14 @@ describe 'Facebook Client' do
     end
 
     let(:post_url) do
-      "/me/feed?message='From OpenAuth2'"
+      "/me/feed"
     end
 
     it 'makes request' do
       VCR.use_cassette('facebook/post') do
         content_type = 'application/json'
-        request = subject.post(:path         => post_url,
-                               :content_type => content_type)
+        request = subject.post(:path    => post_url,
+                               :message => 'From OpenAuth2')
         request.status.should == 200
       end
     end
