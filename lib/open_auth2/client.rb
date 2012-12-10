@@ -85,17 +85,11 @@ module OpenAuth2
     # Returns: Faraday response object.
     #
     def get(hash)
-      connection.get do |conn|
-        path = hash.delete(:path)
+      request(:get, hash)
+    end
 
-        if path_prefix
-          path = "#{path_prefix}#{path}"
-        end
-
-        hash.merge!(:access_token => access_token) if access_token
-
-        conn.url(path, hash)
-      end
+    def delete(hash)
+      request(:delete, hash)
     end
 
     # Makes POST request to OAuth server.
@@ -122,6 +116,11 @@ module OpenAuth2
     #
     def post(hash)
       config.post(hash.merge(:connection => connection))
+    end
+
+    # Same as `post`.
+    def put(hash)
+      config.put(hash.merge(:connection => connection))
     end
 
     # Makes request to OAuth server via Faraday#run_request. It takes
@@ -174,6 +173,23 @@ module OpenAuth2
       end
 
       @connection
+    end
+
+    private
+
+    # Abstracts out GET, DELETE requests.
+    def request(verb, hash)
+      connection.send(verb) do |conn|
+        path = hash.delete(:path)
+
+        if path_prefix
+          path = "#{path_prefix}#{path}"
+        end
+
+        hash.merge!(:access_token => access_token) if access_token
+
+        conn.url(path, hash)
+      end
     end
   end
 end
