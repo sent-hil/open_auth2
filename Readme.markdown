@@ -166,7 +166,7 @@ module OpenAuth2
     # while Provider::Default contains the default options and
     # their values. You can however override them here.
     #
-    class Default
+    class ThirdApi
       def options
         {
           :response_type            => 'code',
@@ -177,12 +177,16 @@ module OpenAuth2
         }
       end
 
-      # Used to parse access_token.
-      def parse(response_body)
-        response_body
+      # parse token body, set it to vars in config
+      def parse(token_body)
+        token = response_body.gsub('access_token=', '')
+        config.access_token = token
       end
 
-      # Used to do 'POST' requests.
+      # Accepts:
+      #   Hash
+      #     connection - Faraday object. Provided by default.
+      #
       def post(hash)
         access_token = hash.delete(:access_token) || config.access_token
 
