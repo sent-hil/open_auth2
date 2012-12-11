@@ -24,6 +24,14 @@ module OpenAuth2
       end
 
       def post(hash)
+        request(:post, hash)
+      end
+
+      def put(hash)
+        request(:put, hash)
+      end
+
+      def request(verb, hash)
         conn = hash.delete(:connection)
         path = hash.delete(:path)
         actk = hash.delete(:access_token) || config.access_token
@@ -31,7 +39,7 @@ module OpenAuth2
         params = URI.encode_www_form(hash.map {|i| i})
         url = path + '?' + params
 
-        conn.post do |c|
+        conn.send(verb) do |c|
           c.url(url, :access_token => actk)
         end
       end
