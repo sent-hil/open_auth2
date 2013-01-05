@@ -52,8 +52,8 @@ describe 'Google Token' do
       subject.token_arrived_at.should == time
     end
 
-    it 'returns false for #token_expired?' do
-      subject.token_expired?.should == false
+    it 'returns true for #token_expired?' do
+      subject.token_expired?.should == true
     end
   end
 
