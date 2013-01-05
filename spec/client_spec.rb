@@ -29,11 +29,6 @@ describe OpenAuth2::Client do
     it 'sets endpoint to make requests' do
       subject.faraday_url.should == 'https://graph.facebook.com'
     end
-
-    it 'defaults to OpenAuth2::Config if no config' do
-      subject = described_class.new
-      subject.config.should be_a(OpenAuth2::Config)
-    end
   end
 
   context '#configure' do
@@ -92,6 +87,33 @@ describe OpenAuth2::Client do
 
       subject.connection.builder.handlers.should
         include(Faraday::Response::Logger)
+    end
+  end
+
+  context 'no config' do
+    subject { OpenAuth2::Client.new }
+
+    it 'defaults to OpenAuth2::Config' do
+      subject = described_class.new
+      subject.config.should be_a(OpenAuth2::Config)
+    end
+
+    it 'makes public request' do
+      VCR.use_cassette('facebook/cocacola') do
+        url = 'https://graph.facebook.com/cocacola'
+        request = subject.get(:path => url)
+        request.status.should == 200
+      end
+    end
+
+    it 'makes private request' do
+      VCR.use_cassette('facebook/me') do
+        at = "?access_token=#{Creds['Facebook']['AccessToken']}"
+        path = "https://graph.facebook.com/me/likes"
+        url = path + at
+        request = subject.get(:path => url)
+        request.status.should == 200
+      end
     end
   end
 end
