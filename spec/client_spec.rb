@@ -29,6 +29,11 @@ describe OpenAuth2::Client do
     it 'sets endpoint to make requests' do
       subject.faraday_url.should == 'https://graph.facebook.com'
     end
+
+    it 'defaults to OpenAuth2::Config if no config' do
+      subject = described_class.new
+      subject.config.should be_a(OpenAuth2::Config)
+    end
   end
 
   context '#configure' do

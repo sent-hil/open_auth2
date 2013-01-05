@@ -24,7 +24,7 @@ module OpenAuth2
     #   # or pass it as an argument
     #   OpenAuth2::Client.new(config)
     #
-    def initialize(config=nil)
+    def initialize(config=OpenAuth2::Config.new)
       @config = config
       yield self if block_given?
       @faraday_url = endpoint
