@@ -61,7 +61,7 @@ describe 'Facebook Token' do
       subject.token_expires_at.to_s.should == (time+5184000).to_s
     end
 
-    it 'returns nil for #token_expired?' do
+    it 'returns false for #token_expired?' do
       subject.token_expired?.should == false
     end
   end
