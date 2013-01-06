@@ -115,13 +115,13 @@ module OpenAuth2
     #
     # Returns: Faraday response object.
     #
-    def post(path, params)
+    def post(path, params={})
       args = {:connection => connection, :path => path}
       config.post(params.merge(args))
     end
 
     # Same as `post`.
-    def put(path, params)
+    def put(path, params={})
       args = {:connection => connection, :path => path}
       config.put(params.merge(args))
     end
