@@ -11,7 +11,7 @@ describe 'Google Client' do
   context '#get' do
     it 'makes private request' do
       VCR.use_cassette('goog/list') do
-        request = subject.get(:path => '/users/me/calendarList')
+        request = subject.get('/users/me/calendarList')
         request.status.should == 200
       end
     end
@@ -30,9 +30,9 @@ describe 'Google Client' do
       content_type = 'application/json'
 
       VCR.use_cassette('goog/post') do
-        request = subject.post(:path         => post_url,
-                               :body         => body,
-                               :content_type => content_type)
+        request = subject.post(post_url,
+                            :body         => body,
+                            :content_type => content_type)
         request.status.should == 200
       end
     end

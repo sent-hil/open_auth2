@@ -11,7 +11,7 @@ describe 'Facebook Client' do
   context '#get' do
     it 'makes public request' do
       VCR.use_cassette('facebook/cocacola') do
-        request = subject.get(:path => '/cocacola')
+        request = subject.get('/cocacola')
         request.status.should == 200
       end
     end
@@ -22,7 +22,7 @@ describe 'Facebook Client' do
       end
 
       VCR.use_cassette('facebook/me') do
-        request = subject.get(:path => '/me/likes')
+        request = subject.get('/me/likes')
         request.status.should == 200
       end
     end
@@ -61,7 +61,7 @@ describe 'Facebook Client' do
     it 'makes request' do
       VCR.use_cassette('facebook/post') do
         content_type = 'application/json'
-        request = subject.post(:path    => post_url,
+        request = subject.post(post_url,
                                :message => 'From OpenAuth2')
         request.status.should == 200
       end

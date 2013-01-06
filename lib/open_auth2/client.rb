@@ -62,8 +62,8 @@ module OpenAuth2
     #   client.build_code_url(:scope => 'publish_stream')
     #
     # Accepts:
-    #   params - (optional) Hash of additional config to be bundled into
-    #                       the url.
+    #   params - (optional) Hash of additional config to
+    #            be bundled into the url.
     #
     # Returns: String (url).
     #
@@ -71,64 +71,67 @@ module OpenAuth2
       token.build_code_url(params)
     end
 
-    # Makes GET request to OAuth server. If access_token is available
-    # we pass that along to identify ourselves.
+    # Makes GET request to OAuth server. If access_token
+    # is available we pass that along to identify request.
     #
     # Accepts:
-    #   hash
-    #     :path - (required)
+    #   path - String
+    #   params - Hash, key/values are encoded as params
     #
     # Examples:
-    #   client.get(:path => '/cocacola')
-    #   client.get(:path => '/cocacola', :limit => 1)
+    #   client.get('/cocacola')
+    #   client.get('/cocacola', :limit => 1)
     #
     # Returns: Faraday response object.
     #
-    def get(hash)
-      request(:get, hash)
+    def get(path, params={})
+      request(:get, params.merge(:path => path))
     end
 
-    def delete(hash)
-      request(:delete, hash)
+    # Same as `get`.
+    def delete(path, params={})
+      request(:delete, params.merge(:path => path))
     end
 
-    # Makes POST request to OAuth server.
+    # Makes POST request.
     #
     # Accepts:
-    #   hash
-    #     :path - (required)
+    #   path - String
+    #   params
+    #     :body - (optional)
+    #     :content_type - (optional)
     #
     # Examples:
     #
     #   # using query params (fb uses this)
-    #   # any params except path is encoded & sent with req
+    #   # params passed via hash are encoded & sent w/ req
     #   #
-    #   client.post(:path    => '/me/feed',
-    #               :message => 'From OpenAuth2')
+    #   client.post('/me/feed', :message => 'OpenAuth2')
     #
     #   # using body (google uses this)
     #   body = JSON.dump(:message => 'From OpenAuth2')
-    #   client.post(:path         => '/me/feed',
-    #               :body         => body,
+    #   client.post('/me/feed', :body => body,
     #               :content_type => 'application/json')
     #
     # Returns: Faraday response object.
     #
-    def post(hash)
-      config.post(hash.merge(:connection => connection))
+    def post(path, params)
+      args = {:connection => connection, :path => path}
+      config.post(params.merge(args))
     end
 
     # Same as `post`.
-    def put(hash)
-      config.put(hash.merge(:connection => connection))
+    def put(path, params)
+      args = {:connection => connection, :path => path}
+      config.put(params.merge(args))
     end
 
-    # Makes request to OAuth server via Faraday#run_request. It takes
-    # Hash since I can never remember the order in which to pass the
-    # arguments.
+    # Makes request to via Faraday#run_request. It takes
+    # Hash since I can never remember the order in which to
+    # pass the arguments.
     #
     # Accepts:
-    #   hash
+    #   params
     #     :verb   - (required) GET/POST etc.
     #     :path   - (required)
     #     :body   - (optional)
@@ -137,23 +140,23 @@ module OpenAuth2
     # Examples:
     #   # public GET request
     #   path = "https://graph.facebook.com/cocacola"
-    #   client.run_request(verb: :get, path: path, body: nil,
-    #                      header: nil)
+    #   client.run_request(verb: :get, path: path,
+    #                      body: nil, header: nil)
     #
     #   # private GET request
     #   path = "/me/likes?access_token=..."
-    #   client.run_request(verb: :get, path: path, body: nil,
-    #                      header: nil)
+    #   client.run_request(verb: :get, path: path,
+    #                      body: nil, header: nil)
     #
     # Returns: Faraday response object.
     #
-    def run_request(hash)
-      connection.run_request(hash[:verb], hash[:path], hash[:body],
-                             hash[:header])
+    def run_request(params)
+      connection.run_request(params[:verb], params[:path],
+                             params[:body], params[:header])
     end
 
-    # Yields: Faraday object, so user can choose choose their own
-    # middleware.
+    # Yields: Faraday object, so user can choose choose
+    # their own middleware.
     #
     # Examples:
     #   config = OpenAuth2::Config.new
@@ -178,17 +181,19 @@ module OpenAuth2
     private
 
     # Abstracts out GET, DELETE requests.
-    def request(verb, hash)
+    def request(verb, params)
       connection.send(verb) do |conn|
-        path = hash.delete(:path)
+        path = params.delete(:path)
 
         if path_prefix
           path = "#{path_prefix}#{path}"
         end
 
-        hash.merge!(:access_token => access_token) if access_token
+        if access_token
+          params.merge!(:access_token => access_token)
+        end
 
-        conn.url(path, hash)
+        conn.url(path, params)
       end
     end
   end

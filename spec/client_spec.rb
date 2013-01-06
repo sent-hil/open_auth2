@@ -101,7 +101,8 @@ describe OpenAuth2::Client do
     it 'makes public request' do
       VCR.use_cassette('facebook/cocacola') do
         url = 'https://graph.facebook.com/cocacola'
-        request = subject.get(:path => url)
+
+        request = subject.get(url)
         request.status.should == 200
       end
     end
@@ -111,7 +112,7 @@ describe OpenAuth2::Client do
         at = "?access_token=#{Creds['Facebook']['AccessToken']}"
         path = "https://graph.facebook.com/me/likes"
         url = path + at
-        request = subject.get(:path => url)
+        request = subject.get(url)
         request.status.should == 200
       end
     end

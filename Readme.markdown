@@ -111,16 +111,16 @@ token.refresh
 
 ## GET request
 
-To make an api call, simply call `get` with a hash containing `path`.
+To make an api call, simply call `get` with your path.
 
 ```ruby
-client.get(:path => '/cocacola')
+client.get('/cocacola')
 ```
 
 `get` accepts a Hash as second argument, which can be used to pass in additional parameters.
 
 ```ruby
-client.get(:path => '/cocacola', :limit => 1)
+client.get('/cocacola', :limit => 1)
 ```
 
 ## Faraday convenience methods

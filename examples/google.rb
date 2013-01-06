@@ -31,7 +31,7 @@ end
 #@url  = @token.build_code_url(params)
 
 # get request
-@list = @client.get(:path => '/users/me/calendarList')
+@list = @client.get('/users/me/calendarList')
 
 @post_url = "/calendar/v3/calendars/#{PostEmail}/events"
 @body     = {
@@ -43,8 +43,7 @@ end
 
 # post request
 def make_request
-  @response  = @client.post(:path         => @post_url,
-                            :body         => @body,
+  @response  = @client.post(@post_url, :body => @body,
                             :content_type => "application/json")
 end
 
