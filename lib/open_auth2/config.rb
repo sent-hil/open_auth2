@@ -46,7 +46,7 @@ module OpenAuth2
 
     # Removes all overwritten config & reset to default.
     def reset_provider
-      remove_instance_vars
+      remove_stored_info
       set_default_as_provider
     end
 
@@ -89,7 +89,7 @@ module OpenAuth2
       end
     end
 
-    def remove_instance_vars
+    def remove_stored_info
       instance_variables.each do |var|
         remove_instance_variable var
       end

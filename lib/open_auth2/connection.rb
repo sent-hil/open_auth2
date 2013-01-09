@@ -11,7 +11,7 @@ module OpenAuth2
       end
     end
 
-    # Yields: Faraday object, so user can choose choose their own
+    # Yields: Faraday object, so user can choose their own
     # middleware.
     #
     # Examples:
@@ -24,14 +24,14 @@ module OpenAuth2
     #
     # Returns: Faraday object.
     #
-    def connection(&blk)
-      @connection ||= Faraday.new(:url => @faraday_url) do |builder|
+    def faraday_connection(&blk)
+      @faraday_connection ||= Faraday.new(:url => @faraday_url) do |builder|
         builder.request :url_encoded
         builder.adapter :net_http
         builder.instance_eval(&blk) if block_given?
       end
 
-      @connection
+      @faraday_connection
     end
   end
 end

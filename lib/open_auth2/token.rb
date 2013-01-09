@@ -4,6 +4,9 @@ module OpenAuth2
 
   # Gets Access/Refresh tokens from OAuth server.
   class Token < Client
+
+    attr_reader :config
+
     def initialize(config)
       @config      = config
       @faraday_url = authorize_url
@@ -39,7 +42,7 @@ module OpenAuth2
     #                       request.
     #
     def get(params={})
-      body        = get_body_hash(params)
+      body        = get_body(params)
       raw_request = post(body)
 
       parse(raw_request)
@@ -52,7 +55,7 @@ module OpenAuth2
     #                       request.
     #
     def refresh(params={})
-      body        = refresh_body_hash(params)
+      body        = refresh_body(params)
       raw_request = post(body)
 
       parse(raw_request)
@@ -72,11 +75,11 @@ module OpenAuth2
     end
 
     def encoded_body(params)
-      URI.encode_www_form(url_body_hash(params))
+      URI.encode_www_form(url_body(params))
     end
 
     # Combine default options & user arguments.
-    def url_body_hash(params)
+    def url_body(params)
 
       # user can define scope as String or Array
       joined_scope = scope.join(',') if scope.respond_to?(:join)
@@ -89,7 +92,7 @@ module OpenAuth2
       }.merge(params)
     end
 
-    def get_body_hash(params)
+    def get_body(params)
       {
         :client_id      => client_id,
         :client_secret  => client_secret,
@@ -99,7 +102,7 @@ module OpenAuth2
       }.merge(params)
     end
 
-    def refresh_body_hash(params)
+    def refresh_body(params)
        {
          :client_id         => client_id,
          :client_secret     => client_secret,
@@ -119,7 +122,7 @@ module OpenAuth2
     end
 
     def parse(response)
-      @config.parse(response.body)
+      config.parse(response.body)
       response
     end
   end
