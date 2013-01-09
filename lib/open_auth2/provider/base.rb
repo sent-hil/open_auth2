@@ -1,9 +1,6 @@
 module OpenAuth2
   module Provider
-
-    # Contains all possible Options keys. Config uses this to define
-    # methods.
-    #
+    # Contains all possible Options keys.
     module Base
       Keys = [
         :client_id,

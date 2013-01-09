@@ -1,10 +1,8 @@
 module OpenAuth2
   module Provider
-
     # Contains the default Options, which is copied to Config on
-    # #initialize. We can then choose another provider or overwrite
-    # them individually.
-    #
+    # #initialize. We can then choose another provider or
+    # overwrite them individually.
     class Default
       attr_accessor :config
 

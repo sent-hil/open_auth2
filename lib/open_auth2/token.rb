@@ -1,7 +1,6 @@
 require_relative 'client'
 
 module OpenAuth2
-
   # Gets Access/Refresh tokens from OAuth server.
   class Token < Client
 
@@ -12,8 +11,8 @@ module OpenAuth2
       @faraday_url = authorize_url
     end
 
-    # Packages info from config & passed in arguments into an url that
-    # user can to visit to authorize this app.
+    # Packages info from config & passed in arguments into an
+    # url that user can to visit to authorize this app.
     #
     # Examples:
     #   token.build_code_url
@@ -26,7 +25,6 @@ module OpenAuth2
     #   params - (optional) Hash of additional config.
     #
     # Returns: String (url).
-    #
     def build_code_url(params={})
       url = URI::HTTPS.build(:host  => host,
                              :path  => authorize_path,
@@ -34,13 +32,12 @@ module OpenAuth2
       url.to_s
     end
 
-    # Makes request to OAuth server for access token & parses it by
-    # delegating to the appropriate provider.
+    # Makes request to OAuth server for access token & parses
+    # it by delegating to the appropriate provider.
     #
     # Accepts:
-    #   params - (optional) Hash of additional config to be sent with
-    #                       request.
-    #
+    #   params - (optional) Hash of additional config to be
+    #             sent with request.
     def get(params={})
       body        = get_body(params)
       raw_request = post(body)
@@ -51,9 +48,8 @@ module OpenAuth2
     # Makes request to OAuth server to refresh the access token.
     #
     # Accepts:
-    #   params - (optional) Hash of additional config to be sent with
-    #                       request.
-    #
+    #   params - (optional) Hash of additional config to be
+    #             sent with request.
     def refresh(params={})
       body        = refresh_body(params)
       raw_request = post(body)
@@ -111,11 +107,11 @@ module OpenAuth2
        }.merge(params)
     end
 
-    # Makes the actual request. `connection` is a Faraday object.
+    # Makes the actual request.
     def post(body)
       connection.post do |conn|
-        conn.headers["Content-Type"] = "application/x-www-form-urlencoded"
-        conn.headers["Accept"]       = "application/json"
+        conn.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        conn.headers['Accept']       = 'application/json'
         conn.url(token_path)
         conn.body = body
       end

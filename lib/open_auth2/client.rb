@@ -1,6 +1,5 @@
 module OpenAuth2
-
-  # Makes GET/POST requests to OAuth server.
+  # Makes GET/POST requests.
   class Client
     extend DelegateToConfig
 
@@ -23,7 +22,6 @@ module OpenAuth2
     #
     #   # or pass it as an argument
     #   OpenAuth2::Client.new(config)
-    #
     def initialize(config=OpenAuth2::Config.new)
       @config = config
       yield self if block_given?
@@ -41,7 +39,6 @@ module OpenAuth2
     #   end
     #
     # Returns: self.
-    #
     def configure
       yield self if block_given?
     end
@@ -49,7 +46,6 @@ module OpenAuth2
     # Use this to get & refresh access/refresh tokens.
     #
     # Returns: Token object.
-    #
     def token
       @token ||= Token.new(config)
     end
@@ -66,7 +62,6 @@ module OpenAuth2
     #            be bundled into the url.
     #
     # Returns: String (url).
-    #
     def build_code_url(params={})
       token.build_code_url(params)
     end
@@ -83,7 +78,6 @@ module OpenAuth2
     #   client.get('/cocacola', :limit => 1)
     #
     # Returns: Faraday response object.
-    #
     def get(path, params={})
       request(:get, params.merge(:path => path))
     end
@@ -114,7 +108,6 @@ module OpenAuth2
     #               :content_type => 'application/json')
     #
     # Returns: Faraday response object.
-    #
     def post(path, params={})
       args = {:connection => connection, :path => path}
       config.post(params.merge(args))
@@ -149,7 +142,6 @@ module OpenAuth2
     #                      body: nil, header: nil)
     #
     # Returns: Faraday response object.
-    #
     def run_request(params)
       connection.run_request(params[:verb], params[:path],
                              params[:body], params[:header])
@@ -167,7 +159,6 @@ module OpenAuth2
     #   end
     #
     # Returns: Faraday object.
-    #
     def connection(&blk)
       @connection ||= Faraday.new(:url => @faraday_url) do |builder|
         builder.request :url_encoded

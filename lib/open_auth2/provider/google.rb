@@ -18,8 +18,8 @@ module OpenAuth2
         config.token_arrived_at = Time.now
         config.token_expires_at = Time.now+3600
 
-        # google sends refresh_token when getting access_token, but not
-        # when refreshing
+        # google sends refresh_token when getting
+        # access_token, but not when refreshing
         unless config.refresh_token
           config.refresh_token = json['refresh_token']
         end

@@ -1,9 +1,8 @@
 module OpenAuth2
 
-  # Client/Token use this to make the actual requests to OAuth server.
-  # Since some OAuth servers have seperate endpoints for authorization
+  # Client/Token use this to make the actual requests.
+  # Since some servers have seperate endpoints for authorization
   # & api requests, we use @faraday_url to store that info.
-  #
   module Connection
     def self.included(base)
       base.class_eval do
@@ -23,7 +22,6 @@ module OpenAuth2
     #   end
     #
     # Returns: Faraday object.
-    #
     def faraday_connection(&blk)
       @faraday_connection ||= Faraday.new(:url => @faraday_url) do |builder|
         builder.request :url_encoded

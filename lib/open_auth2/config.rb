@@ -1,6 +1,5 @@
 module OpenAuth2
-
-  # Holds the info required to make a valid request to an OAuth server.
+  # Holds the info required to make a valid request.
   class Config
     attr_accessor *Provider::Base::Keys
     attr_reader :provider, :provider_const, :provider_string
@@ -11,7 +10,6 @@ module OpenAuth2
     #   OpenAuth2::Config.new do |c|
     #     c.provider = :default
     #   end
-    #
     def initialize
       set_default_as_provider
       yield self if block_given?
@@ -27,16 +25,14 @@ module OpenAuth2
     #   end
     #
     # Returns: self.
-    #
     def configure
       yield self if block_given?
     end
 
-    # Finds provider's module & copies its Options key/value pairs.
+    # Finds provider's module & copies its options info.
     #
     # Accepts:
     #   name - String/Symbol/Constant.
-    #
     def provider=(name)
       return unless name
 
