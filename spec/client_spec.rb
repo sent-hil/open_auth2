@@ -31,18 +31,6 @@ describe OpenAuth2::Client do
     end
   end
 
-  context '#configure' do
-    it 'accepts a block to set/overwrite config' do
-      subject.configure do |c|
-        c.access_token  = :access_token
-        c.refresh_token = :refresh_token
-      end
-
-      subject.access_token.should  == :access_token
-      subject.refresh_token.should == :refresh_token
-    end
-  end
-
   context '#token' do
     it 'returns OpenAuth2::Token object' do
       subject.token.should be_an(OpenAuth2::Token)

@@ -25,16 +25,6 @@ describe OpenAuth2::Config do
     end
   end
 
-  context '#configure' do
-    it 'accepts a block to set/overwrite config' do
-      subject.configure do |c|
-        c.client_id = :set_in_configure
-      end
-
-      subject.client_id.should == :set_in_configure
-    end
-  end
-
   context '#provider=' do
     before do
       subject.provider = :facebook
@@ -91,9 +81,7 @@ describe OpenAuth2::Config do
   end
 
   let(:overwrite_response_type) do
-    subject.configure do |c|
-      c.response_type = :overwritten
-    end
+    subject.response_type = :overwritten
   end
 
   context '#reset_provider' do

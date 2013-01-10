@@ -59,9 +59,7 @@ describe 'Google Token' do
 
   context '#refresh' do
     let(:refresh_token) do
-      config.configure do |c|
-        c.refresh_token = Creds['Google']['RefreshToken']
-      end
+      config.refresh_token = Creds['Google']['RefreshToken']
 
       VCR.use_cassette('goog/refresh_token') do
         subject.refresh

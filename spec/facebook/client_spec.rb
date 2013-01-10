@@ -17,9 +17,7 @@ describe 'Facebook Client' do
     end
 
     it 'makes private request if #access_token' do
-      subject.configure do |c|
-        c.access_token = Creds['Facebook']['AccessToken']
-      end
+      subject.access_token = Creds['Facebook']['AccessToken']
 
       VCR.use_cassette('facebook/me') do
         request = subject.get('/me/likes')
@@ -49,9 +47,7 @@ describe 'Facebook Client' do
 
   context '#post' do
     before do
-      subject.configure do |c|
-        c.access_token = Creds['Facebook']['AccessToken']
-      end
+      subject.access_token = Creds['Facebook']['AccessToken']
     end
 
     let(:post_url) do

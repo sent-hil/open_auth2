@@ -28,21 +28,6 @@ module OpenAuth2
       @faraday_url = endpoint
     end
 
-    # Use to set/change config after #initialize.
-    #
-    # Examples:
-    #   client = OpenAuth2::Client.new
-    #
-    #   client.configure do |c|
-    #     c.access_token  = :access_token
-    #     c.refresh_token = :refresh_token
-    #   end
-    #
-    # Returns: self.
-    def configure
-      yield self if block_given?
-    end
-
     # Use this to get & refresh access/refresh tokens.
     #
     # Returns: Token object.

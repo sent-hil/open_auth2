@@ -68,9 +68,7 @@ describe 'Facebook Token' do
 
   context '#refresh' do
     let(:refresh_token) do
-      config.configure do |c|
-        c.refresh_token = Creds['Facebook']['AccessToken']
-      end
+      config.refresh_token = Creds['Facebook']['AccessToken']
 
       VCR.use_cassette('facebook/refresh_token') do
         subject.refresh

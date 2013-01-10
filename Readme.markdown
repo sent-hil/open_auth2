@@ -68,15 +68,8 @@ client.build_code_url(:scope => 'publish_stream')
 Access token is used to sign the request so the server can identify the client sending the request. If you already have an access token, add it to the client with a block.
 
 ```ruby
-access_token  = 'enter in your value'
-refresh_token = 'enter in your value'
-
-client.configure do |c|
-  c.access_token  = access_token
-
-  # optional, for fb its same as above
-  c.refresh_token = refresh_token
-end
+client.access_token  = 'enter in your value'
+client.refresh_token = 'enter in your value'
 ```
 
 ## GET Access Token
@@ -87,9 +80,6 @@ If you don't have an access token, we'll need to ask the server for it.
 
 ```ruby
 token = client.token
-token.configure do
-  response :logger
-end
 
 # asks Facebook for access_token
 token.get

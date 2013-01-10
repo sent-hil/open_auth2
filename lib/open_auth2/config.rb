@@ -15,20 +15,6 @@ module OpenAuth2
       yield self if block_given?
     end
 
-    # Use to set config info.
-    #
-    # Examples:
-    #   config = OpenAuth2::Config.new
-    #
-    #   config.configure do |c|
-    #     c.provider = :google
-    #   end
-    #
-    # Returns: self.
-    def configure
-      yield self if block_given?
-    end
-
     # Finds provider's module & copies its options info.
     #
     # Accepts:
