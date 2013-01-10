@@ -1,5 +1,4 @@
 module OpenAuth2
-
   # Helper module that Client/Token extend so they can have
   # access to Options methods. We delegate those methods to
   # Config object.

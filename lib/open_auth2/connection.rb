@@ -1,5 +1,4 @@
 module OpenAuth2
-
   # Client/Token use this to make the actual requests.
   # Since some servers have seperate endpoints for authorization
   # & api requests, we use @faraday_url to store that info.

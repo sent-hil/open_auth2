@@ -3,7 +3,6 @@ require_relative 'client'
 module OpenAuth2
   # Gets Access/Refresh tokens from OAuth server.
   class Token < Client
-
     attr_reader :config
 
     def initialize(config)
