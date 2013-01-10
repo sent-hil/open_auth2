@@ -24,8 +24,8 @@ module OpenAuth2
     # Use this to get & refresh access/refresh tokens.
     #
     # Returns: Token object.
-    def token
-      @token ||= Token.new(config)
+    def token(token=Token.new(config))
+      @token ||= token
     end
 
     # Examples:
