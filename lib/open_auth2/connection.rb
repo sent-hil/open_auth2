@@ -22,14 +22,14 @@ module OpenAuth2
     #   end
     #
     # Returns: Faraday object.
-    def faraday_connection(&blk)
-      @faraday_connection ||= Faraday.new(:url => @faraday_url) do |builder|
+    def connection(&blk)
+      @connection ||= Faraday.new(:url => @faraday_url) do |builder|
         builder.request :url_encoded
         builder.adapter :net_http
         builder.instance_eval(&blk) if block_given?
       end
 
-      @faraday_connection
+      @connection
     end
   end
 end
