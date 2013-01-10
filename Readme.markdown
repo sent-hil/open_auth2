@@ -36,9 +36,7 @@ end
 Next, initialize a `client` object, which we'll use to make requests and pass in the `config` object we created earlier.
 
 ```ruby
-client = OpenAuth2::Client.new do |c|
-  c.config = config
-end
+client = OpenAuth2::Client.new(config)
 ```
 
 `Client#connection` returns a `Faraday::Connection` object, which can be used to setup middleware.

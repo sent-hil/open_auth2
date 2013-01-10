@@ -18,14 +18,6 @@ describe OpenAuth2::Client do
       subject.config.should == config
     end
 
-    it 'accepts config via block' do
-      subject = described_class.new do |c|
-        c.config = config
-      end
-
-      subject.config.should == config
-    end
-
     it 'sets endpoint to make requests' do
       subject.faraday_url.should == 'https://graph.facebook.com'
     end
