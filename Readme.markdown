@@ -52,13 +52,13 @@ end
 To start the OAuth2 exotic dance, you'll need to obtain a 'code' from the server, which you can then use to request an 'access_token'. Redirect the user/yourself to this url to obtain that 'code'.
 
 ```ruby
-client.build_code_url
+token.build_code_url
 ```
 
 `build_code_url` takes optional params hash, which will be bundled into the url.
 
 ```ruby
-client.build_code_url(:scope => 'publish_stream')
+token.build_code_url(:scope => 'publish_stream')
 ```
 
 ## Access token
@@ -77,17 +77,17 @@ If you don't have an access token, we'll need to ask the server for it.
 `token#configure` is similar to `client#connection`.
 
 ```ruby
-token = client.token
+token = OpenAuth2::Token.new(config)
 
 # asks Facebook for access_token
 token.get
 
 # the following methods are now available
-client.access_token
-client.refresh_token
-client.token_expires_at
-client.token_expired?
-client.token_arrived_at
+token.access_token
+token.refresh_token
+token.token_expires_at
+token.token_expired?
+token.token_arrived_at
 ```
 
 ## GET Refresh Token

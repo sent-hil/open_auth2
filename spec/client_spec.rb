@@ -23,19 +23,6 @@ describe OpenAuth2::Client do
     end
   end
 
-  context '#token' do
-    it 'returns OpenAuth2::Token object' do
-      subject.token.should be_an(OpenAuth2::Token)
-    end
-  end
-
-  context '#build_code_url' do
-    it 'delegates to OpenAuth2::Token' do
-      OpenAuth2::Token.any_instance.should_receive(:build_code_url)
-      subject.build_code_url
-    end
-  end
-
   subject { described_class.new(config) }
 
   context OpenAuth2::DelegateToConfig do

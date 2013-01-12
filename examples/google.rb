@@ -23,7 +23,7 @@ end
 
 @client = OpenAuth2::Client.new(@config)
 
-#@token = @client.token
+#@token = OpenAuth2::Client.new(@config)
 
 #params = {:approval_prompt => 'force', :access_type => 'offline'}
 #@url  = @token.build_code_url(params)

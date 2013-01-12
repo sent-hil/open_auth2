@@ -17,5 +17,5 @@ AccessToken = Creds['Facebook']['AccessToken']
 end
 
 @client = OpenAuth2::Client.new(@config)
-@url    = @client.build_code_url
-@token  = @client.token
+@token  = OpenAuth2::Token.new(@config)
+@url    = @token.build_code_url

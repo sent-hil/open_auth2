@@ -20,29 +20,6 @@ module OpenAuth2
       @faraday_url = endpoint
     end
 
-    # Use this to get & refresh access/refresh tokens.
-    #
-    # Returns: Token object.
-    def token(token=Token.new(config))
-      @token ||= token
-    end
-
-    # Examples:
-    #   client.build_code_url
-    #   #=> 'http://...'
-    #
-    #   # or
-    #   client.build_code_url(:scope => 'publish_stream')
-    #
-    # Accepts:
-    #   params - (optional) Hash of additional config to
-    #            be bundled into the url.
-    #
-    # Returns: String (url).
-    def build_code_url(params={})
-      token.build_code_url(params)
-    end
-
     # Makes GET request to OAuth server. If access_token
     # is available we pass that along to identify request.
     #
