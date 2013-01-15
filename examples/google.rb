@@ -10,7 +10,7 @@ RefreshToken = '1/2hTXHN9FULj7v_hVOIoyHn6BpOQS6uDOw-xllInXnTU'
 PostEmail    = 'senthil196@gmail.com'
 
 @config = OpenAuth2::Config.new do |c|
-  c.provider       = :google
+  c.provider       = OpenAuth2::Provider::Google
   c.client_id      = Creds['Google']['ClientId']
   c.client_secret  = Creds['Google']['ClientSecret']
   c.code           = Code

@@ -12,7 +12,7 @@ if ENV['RESET_TOKENS']
 
     it 'Facebook' do
       config = OpenAuth2::Config.new do |c|
-        c.provider       = :facebook
+        c.provider       = OpenAuth2::Provider::Facebook
         c.client_id      = Creds['Facebook']['ClientId']
         c.client_secret  = Creds['Facebook']['ClientSecret']
         c.code           = Creds['Facebook']['Code']

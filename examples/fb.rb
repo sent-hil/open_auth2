@@ -7,7 +7,7 @@ Code        = Creds['Facebook']['Code']
 AccessToken = Creds['Facebook']['AccessToken']
 
 @config = OpenAuth2::Config.new do |c|
-  c.provider       = :facebook
+  c.provider       = OpenAuth2::Provider::Facebook
   c.client_id      = Creds['Facebook']['ClientId']
   c.client_secret  = Creds['Facebook']['ClientSecret']
   c.code           = Code
