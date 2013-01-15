@@ -13,7 +13,7 @@ Creds = YAML.load_file('spec/fixtures/creds.yml')
 
 def facebook_config
   OpenAuth2::Config.new do |c|
-    c.provider       = :facebook
+    c.provider       = OpenAuth2::Provider::Facebook
     c.client_id      = Creds['Facebook']['ClientId']
     c.client_secret  = Creds['Facebook']['ClientSecret']
     c.code           = Creds['Facebook']['Code']
@@ -24,7 +24,7 @@ end
 
 def google_config
   OpenAuth2::Config.new do |c|
-    c.provider       = :google
+    c.provider       = OpenAuth2::Provider::Google
     c.client_id      = Creds['Google']['ClientId']
     c.client_secret  = Creds['Google']['ClientSecret']
     c.access_token   = Creds['Google']['AccessToken']

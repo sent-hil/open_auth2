@@ -17,7 +17,7 @@ describe OpenAuth2::Config do
     end
 
     it 'sets default as provider' do
-      subject.provider.should == :default
+      subject.provider.should be_a OpenAuth2::Provider::Default
     end
 
     it 'accepts a block to set config' do
@@ -26,24 +26,16 @@ describe OpenAuth2::Config do
   end
 
   context '#provider=' do
-    before do
-      subject.provider = :facebook
-    end
-
-    it 'sets provider' do
-      subject.provider.should == :facebook
-    end
-
-    it 'sets provider_string' do
-      subject.provider_string.should == 'facebook'
-    end
-
     let(:facebook_const) do
       OpenAuth2::Provider::Facebook
     end
 
-    it 'sets provider_const' do
-      subject.provider_const.should == facebook_const
+    before do
+      subject.provider = OpenAuth2::Provider::Facebook
+    end
+
+    it 'sets provider' do
+      subject.provider.should be_a facebook_const
     end
 
     it 'copies over options from provider' do
@@ -93,13 +85,13 @@ describe OpenAuth2::Config do
     end
 
     let(:set_to_fb_and_reset) do
-      subject.provider = :facebook
+      subject.provider = OpenAuth2::Provider::Facebook
       subject.reset_provider
     end
 
     it 'resets provider to default' do
       set_to_fb_and_reset
-      subject.provider.should == :default
+      subject.provider.should be_a OpenAuth2::Provider::Default
     end
 
     it 'resets all config to default values' do

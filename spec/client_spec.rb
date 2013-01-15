@@ -4,7 +4,7 @@ require 'spec_helper'
 describe OpenAuth2::Client do
   let(:config) do
     OpenAuth2::Config.new do |c|
-      c.provider     = :facebook
+      c.provider     = OpenAuth2::Provider::Facebook
       c.access_token = :access_token
     end
   end

@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   s.require_paths     = ["lib"]
 
   s.add_dependency 'faraday',             '~> 0.7'
-  s.add_dependency 'activesupport',       '~> 3.1'
   s.add_dependency 'json'
 
   if RUBY_PLATFORM == 'java'

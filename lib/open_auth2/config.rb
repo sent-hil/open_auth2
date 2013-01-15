@@ -2,27 +2,27 @@ module OpenAuth2
   # Holds the info required to make a valid request.
   class Config
     attr_accessor *Provider::Base::Keys
-    attr_reader :provider, :provider_const, :provider_string
+    attr_reader :provider
 
     # Use to set config info.
     #
     # Examples:
     #   OpenAuth2::Config.new do |c|
-    #     c.provider = :default
+    #     c.provider = OpenAuth2::Provider::Default
     #   end
     def initialize
       set_default_as_provider
       yield self if block_given?
     end
 
-    # Finds provider's module & copies its options info.
+    # Initializes provider & copies its options info.
     #
     # Accepts:
-    #   name - String/Symbol/Constant.
+    #   name - Class
     def provider=(name)
       return unless name
 
-      set_provider_vars(name)
+      set_provider(name)
       copy_provider_keys
     end
 
@@ -34,28 +34,20 @@ module OpenAuth2
 
     # Delegates missing methods to provider.
     def method_missing(name, *args, &blk)
-      @provider_const.new(self).send(name, *args)
+      provider.send(name, *args)
     end
 
     private
 
     def set_default_as_provider
-      self.provider = :default
+      self.provider = OpenAuth2::Provider::Default
     end
 
-    def set_provider_vars(name)
-      @provider        = name
-      @provider_string = name.to_s
-      @provider_const  = constantize_provider_string
-    end
-
-    def constantize_provider_string
-      provider_string = @provider_string.camelize
-      full_string     = "OpenAuth2::Provider::#{provider_string}"
-
-      @provider_const = full_string.constantize
-    rescue NameError
-      raise UnknownProvider, "Known Providers: #{known_providers}"
+    def set_provider(name)
+      @provider = name.new(self)
+    rescue => e
+      raise UnknownProvider,
+        "Known Providers: #{known_providers}"
     end
 
     def known_providers
@@ -66,7 +58,7 @@ module OpenAuth2
     end
 
     def copy_provider_keys
-      @provider_const::new(config).options.each do |k,v|
+      provider.options.each do |k,v|
         instance_variable_set("@#{k}", v)
       end
     end

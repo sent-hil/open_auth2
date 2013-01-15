@@ -11,7 +11,7 @@ module OpenAuth2
     #
     # Examples:
     #   config = OpenAuth2::Config.new do |c|
-    #     c.provider = :facebook
+    #     c.provider = OpenAuth2::Provider::Facebook
     #   end
     #
     #   OpenAuth2::Client.new(config)
