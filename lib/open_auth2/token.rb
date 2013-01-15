@@ -5,8 +5,8 @@ module OpenAuth2
   class Token < Client
     attr_reader :config
 
-    def initialize(config)
-      @config      = config
+    def initialize(config=OpenAuth2::Config.new)
+      @config = config
       @faraday_url = authorize_url
     end
 
