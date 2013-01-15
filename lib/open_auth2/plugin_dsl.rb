@@ -24,7 +24,7 @@ module OpenAuth2
             instance_variable_set("@#{name}", blk)
           end
 
-          instance_variable_get("@#{name}")
+          instance_variable_get("@#{name}") || Proc.new {}
         end
       end
     end

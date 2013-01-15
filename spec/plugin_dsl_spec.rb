@@ -38,4 +38,8 @@ describe OpenAuth2::PluginDsl do
   it 'stores provider specific callbacks' do
     provider_inst.before_client_post.call(1).should == 1
   end
+
+  it 'ignores non-existent callbacks' do
+    provider_inst.after_client_post.call(1).should == nil
+  end
 end
