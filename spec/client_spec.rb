@@ -1,4 +1,3 @@
-require 'open_auth2'
 require 'spec_helper'
 
 describe OpenAuth2::Client do

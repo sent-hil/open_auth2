@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'open_auth2/conn'
 
 describe OpenAuth2::Conn do
   context 'facebook' do

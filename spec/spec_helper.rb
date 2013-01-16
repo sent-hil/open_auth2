@@ -1,3 +1,5 @@
+require_relative '../lib/open_auth2'
+
 require 'pry'
 
 require 'vcr'
