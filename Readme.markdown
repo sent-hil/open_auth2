@@ -39,14 +39,6 @@ Next, initialize a `client` object, which we'll use to make requests and pass in
 client = OpenAuth2::Client.new(config)
 ```
 
-`Client#connection` returns a `Faraday::Connection` object, which can be used to setup middleware.
-
-```ruby
-client.connection do
-  response :logger
-end
-```
-
 ## Authenticate Url
 
 To start the OAuth2 exotic dance, you'll need to obtain a 'code' from the server, which you can then use to request an 'access_token'. Redirect the user/yourself to this url to obtain that 'code'.
@@ -111,16 +103,6 @@ client.get('/cocacola')
 client.get('/cocacola', :limit => 1)
 ```
 
-## Faraday convenience methods
-
-`Client#get` is a convenience method that calls `Faraday#get`. You can drop down to Faraday connection object itself and make requests via that also.
-
-```ruby
-client.connection.get do |conn|
-  conn.url('/cocacola')
-end
-```
-
 ## Plugins
 
 Since various OAuth2 providers differ in their implementation, OpenAuth2 provides a simple plugin system to accomodate the differences, rather than 'one shoe fits all' approach. Facebook and Google plugins are builtin, but it is trivial to add new ones.
@@ -129,6 +111,7 @@ There are only four requirements:
 
   1. Should be under right namespace (OpenAuth2::Provider)
   1. Can contain #options method
+  1. Can contain #parse method
 
 To use the plugin, call `Config#provider=` with name of the provider.
 
