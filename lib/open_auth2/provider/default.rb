@@ -24,14 +24,6 @@ module OpenAuth2
         response_body
       end
 
-      def post(hash)
-        request(:post, hash)
-      end
-
-      def put(hash)
-        request(:put, hash)
-      end
-
       private
 
       # Abstracts out POST, PUT requests.

@@ -14,9 +14,5 @@ describe OpenAuth2::Token do
       subject = described_class.new(config)
       subject.config.should == config
     end
-
-    it 'sets @faraday_url' do
-      subject.faraday_url.should == 'https://graph.facebook.com'
-    end
   end
 end

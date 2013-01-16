@@ -17,9 +17,6 @@ describe 'Google Client' do
   end
 
   context '#post' do
-    let(:post_url) do
-      '/calendar/v3/calendars/openauth2@gmail.com/events'
-    end
 
     let(:body) do
       "{\"summary\":\"From OpenAuth2\",\"start\":{\"dateTime\":\"2012-03-01T10:00:00.000-07:00\"},\"end\":{\"dateTime\":\"2012-03-02T10:25:00.000-07:00\"}}"
@@ -27,11 +24,10 @@ describe 'Google Client' do
 
     it 'POST request' do
       content_type = 'application/json'
-
+      post_url = '/calendars/openauth2@gmail.com/events'
       VCR.use_cassette('goog/post') do
-        request = subject.post(post_url,
-                            :body         => body,
-                            :content_type => content_type)
+        request = subject.post(post_url, :body => body,
+              :headers => {:content_type => content_type})
         request.status.should == 200
       end
     end

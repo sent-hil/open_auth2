@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OpenAuth2::Conn do
+describe OpenAuth2::Connection do
   context 'facebook' do
     it 'makes GET request' do
       VCR.use_cassette('facebook/cocacola') do

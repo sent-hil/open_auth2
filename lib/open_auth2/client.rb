@@ -2,7 +2,6 @@ module OpenAuth2
   # Makes GET/POST requests.
   class Client
     extend DelegateToConfig
-    include Connection
 
     # Use to set config.
     #
@@ -17,7 +16,7 @@ module OpenAuth2
     #   OpenAuth2::Client.new(config)
     def initialize(config=OpenAuth2::Config.new)
       @config = config
-      @faraday_url = endpoint
+      @endpoint = endpoint
     end
 
     # Makes GET request to OAuth server. If access_token
@@ -41,83 +40,38 @@ module OpenAuth2
       request(:delete, params.merge(:path => path))
     end
 
-    # Makes POST request.
-    #
-    # Accepts:
-    #   path - String
-    #   params
-    #     :body - (optional)
-    #     :content_type - (optional)
-    #
-    # Examples:
-    #
-    #   # using query params (fb uses this)
-    #   # params passed via hash are encoded & sent w/ req
-    #   #
-    #   client.post('/me/feed', :message => 'OpenAuth2')
-    #
-    #   # using body (google uses this)
-    #   body = JSON.dump(:message => 'From OpenAuth2')
-    #   client.post('/me/feed', :body => body,
-    #               :content_type => 'application/json')
-    #
-    # Returns: Faraday response object.
     def post(path, params={})
-      args = {:connection => connection, :path => path}
-      config.post(params.merge(args))
+      request(:post, params.merge(:path => path))
     end
 
     # Same as `post`.
     def put(path, params={})
-      args = {:connection => connection, :path => path}
-      config.put(params.merge(args))
-    end
-
-    # Makes request to via Faraday#run_request. It takes
-    # Hash since I can never remember the order in which to
-    # pass the arguments.
-    #
-    # Accepts:
-    #   params
-    #     :verb   - (required) GET/POST etc.
-    #     :path   - (required)
-    #     :body   - (optional)
-    #     :header - (optional)
-    #
-    # Examples:
-    #   # public GET request
-    #   path = "https://graph.facebook.com/cocacola"
-    #   client.run_request(verb: :get, path: path,
-    #                      body: nil, header: nil)
-    #
-    #   # private GET request
-    #   path = "/me/likes?access_token=..."
-    #   client.run_request(verb: :get, path: path,
-    #                      body: nil, header: nil)
-    #
-    # Returns: Faraday response object.
-    def run_request(params)
-      connection.run_request(params[:verb], params[:path],
-                             params[:body], params[:header])
+      request(:post, params.merge(:path => path))
     end
 
     private
 
     # Abstracts out GET, DELETE requests.
     def request(verb, params)
-      connection.send(verb) do |conn|
-        path = params.delete(:path)
+      params = build_url(params)
 
-        if path_prefix
-          path = "#{path_prefix}#{path}"
-        end
-
-        if access_token
-          params.merge!(:access_token => access_token)
-        end
-
-        conn.url(path, params)
+      if access_token
+        params.merge!(:access_token => access_token)
       end
+
+      Connection.new(verb, params).fetch
+    end
+
+    def build_url(params)
+      url = ""
+      url += endpoint.to_s
+
+      if path_prefix
+        url += "#{path_prefix}"
+      end
+
+      url += params.delete(:path)
+      params.merge!(:url => url)
     end
   end
 end

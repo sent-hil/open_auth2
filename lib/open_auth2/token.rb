@@ -5,7 +5,7 @@ module OpenAuth2
   class Token < Client
     def initialize(config=OpenAuth2::Config.new)
       @config = config
-      @faraday_url = authorize_url
+      @endpoint = authorize_url
     end
 
     # Packages info from config & passed in arguments into an
@@ -106,12 +106,14 @@ module OpenAuth2
 
     # Makes the actual request.
     def post(body)
-      connection.post do |conn|
-        conn.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-        conn.headers['Accept']       = 'application/json'
-        conn.url(token_path)
-        conn.body = body
-      end
+      url = @endpoint + token_path
+      params = {
+        :headers => {'Content-Type' => 'application/x-www-form-urlencoded', 'Accept' => 'application/json'},
+        :url => url,
+        :body => body
+      }
+
+      Connection.new(:post, params).fetch
     end
 
     def parse(response)

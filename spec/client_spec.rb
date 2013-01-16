@@ -16,10 +16,6 @@ describe OpenAuth2::Client do
     it 'accepts config as an argument' do
       subject.config.should == config
     end
-
-    it 'sets endpoint to make requests' do
-      subject.faraday_url.should == 'https://graph.facebook.com'
-    end
   end
 
   subject { described_class.new(config) }
@@ -38,21 +34,6 @@ describe OpenAuth2::Client do
 
     it 'overwritten Options stays that way' do
       config.access_token.should == :access_token
-    end
-  end
-
-  context OpenAuth2::Connection do
-    it 'returns Faraday object' do
-      subject.connection.should be_a(Faraday::Connection)
-    end
-
-    it 'allows adding custom middleware to Faraday' do
-      subject.connection do
-        response :logger
-      end
-
-      subject.connection.builder.handlers.should
-        include(Faraday::Response::Logger)
     end
   end
 

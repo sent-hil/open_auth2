@@ -8,7 +8,7 @@ module OpenAuth2
           :refresh_token_grant_name => 'fb_exchange_token',
           :refresh_token_name       => 'fb_exchange_token',
           :authorize_path           => '/dialog/oauth',
-          :token_path               => 'oauth/access_token',
+          :token_path               => '/oauth/access_token',
           :endpoint             => 'https://graph.facebook.com'
         }
       end
