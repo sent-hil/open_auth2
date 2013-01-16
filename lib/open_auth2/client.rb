@@ -41,7 +41,9 @@ module OpenAuth2
     end
 
     def post(path, params={})
-      request(:post, params.merge(:path => path))
+      params.merge!(:path => path)
+      config.provider.before_client_post.call(params)
+      request(:post, params)
     end
 
     # Same as `post`.

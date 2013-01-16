@@ -1,19 +1,17 @@
 module OpenAuth2
   module Provider
-    class Google < Default
-      def options
-        {
-          :authorize_url  => 'https://accounts.google.com',
-          :code_url       => 'https://accounts.google.com',
-          :authorize_path => '/o/oauth2/auth',
-          :redirect_uri   => 'http://localhost:9393/google/callback',
-          :token_path     => '/o/oauth2/token',
-          :endpoint       => 'https://www.googleapis.com'
-        }
-      end
+    class Google
+      extend OpenAuth2::PluginDsl
 
-      def parse(body)
-        json                    = JSON.parse(body)
+      options :authorize_url => 'https://accounts.google.com',
+        :code_url => 'https://accounts.google.com',
+        :authorize_path => '/o/oauth2/auth',
+        :redirect_uri => 'http://localhost:9393/google/callback',
+        :token_path => '/o/oauth2/token',
+        :endpoint => 'https://www.googleapis.com'
+
+      after_token_post do |response_body, config|
+        json                    = JSON.parse(response_body)
         config.access_token     = json['access_token']
         config.token_arrived_at = Time.now
         config.token_expires_at = Time.now+3600

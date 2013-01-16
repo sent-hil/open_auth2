@@ -117,7 +117,7 @@ module OpenAuth2
     end
 
     def parse(response)
-      config.parse(response.body)
+      config.after_token_post.call(response.body, config)
       response
     end
   end

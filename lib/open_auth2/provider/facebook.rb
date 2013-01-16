@@ -1,19 +1,23 @@
 module OpenAuth2
   module Provider
-    class Facebook < Default
-      def options
-        {
-          :authorize_url => 'https://graph.facebook.com',
+    class Facebook
+      extend OpenAuth2::PluginDsl
+
+      options :authorize_url => 'https://graph.facebook.com',
           :code_url => 'https://www.facebook.com',
           :refresh_token_grant_name => 'fb_exchange_token',
           :refresh_token_name => 'fb_exchange_token',
           :authorize_path => '/dialog/oauth',
           :token_path => '/oauth/access_token',
           :endpoint => 'https://graph.facebook.com'
-        }
+
+      before_client_post do |params|
+        body = URI.encode_www_form(params[:body])
+        params[:path] += "?#{body}"
+        params.delete(:body)
       end
 
-      def parse(response_body)
+      after_token_post do |response_body, config|
         resp = response_body.gsub('access_token=', '')
         resp = resp.split('&expires=')
 

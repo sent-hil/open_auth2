@@ -9,6 +9,7 @@ module OpenAuth2
       @providers << klass
 
       klass.send(:include, InstanceMethods)
+      klass.send(:attr_reader, :config)
     end
 
     def options(opts={})

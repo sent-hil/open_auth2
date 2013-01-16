@@ -107,11 +107,11 @@ client.get('/cocacola', :limit => 1)
 
 Since various OAuth2 providers differ in their implementation, OpenAuth2 provides a simple plugin system to accomodate the differences, rather than 'one shoe fits all' approach. Facebook and Google plugins are builtin, but it is trivial to add new ones.
 
-There are only four requirements:
+There are only two requirements:
 
-  1. Should be under right namespace (OpenAuth2::Provider)
   1. Can contain #options method
-  1. Can contain #parse method
+  1. Can contain #before_client_post method
+  1. Can contain #after_token_post method
 
 To use the plugin, call `Config#provider=` with name of the provider.
 
@@ -120,24 +120,18 @@ To use the plugin, call `Config#provider=` with name of the provider.
 ```ruby
 module OpenAuth2
   module Provider
-
-    # Provider::Base contains keys of various accepted Options,
-    # while Provider::Default contains the default options and
-    # their values. You can however override them here.
-    #
     class ThirdApi
-      def options
-        {
-          :response_type            => 'code',
-          :access_token_grant_name  => 'authorization_code',
-          :refresh_token_grant_name => 'refresh_token',
-          :refresh_token_name       => :refresh_token,
-          :scope                    => [],
-        }
+      options :response_type => 'code',
+        :access_token_grant_name => 'authorization_code',
+        :refresh_token_grant_name => 'refresh_token',
+        :refresh_token_name => :refresh_token,
+        :scope => []
+
+      before_client_post do |params|
+        params[:url] += '?extra_params'
       end
 
-      # parse token body, set it to vars in config
-      def parse(token_body)
+      after_token_post do |response_body, config|
         token = response_body.gsub('access_token=', '')
         config.access_token = token
       end
