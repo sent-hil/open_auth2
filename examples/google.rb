@@ -47,9 +47,3 @@ end
 
 #header   = {"Content-Type" => "application/json"}
 #full_url = "#{post_url}?access_token=#{AccessToken}"
-
-# post request via #run_request
-#@client.run_request(:verb   => :post,
-                    #:path   => full_url,
-                    #:body   => body,
-                    #:header => header)

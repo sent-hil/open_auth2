@@ -35,18 +35,5 @@ describe 'Google Client' do
         request.status.should == 200
       end
     end
-
-    it 'POST request via #run_request' do
-      header   = {"Content-Type" => "application/json"}
-      full_url = "#{post_url}?access_token=#{Creds['Google']['AccessToken']}"
-
-      VCR.use_cassette('goog/post') do
-        request = subject.run_request(:verb   => :post,
-                                      :path   => full_url,
-                                      :body   => body,
-                                      :header => header)
-        request.status.should == 200
-      end
-    end
   end
 end

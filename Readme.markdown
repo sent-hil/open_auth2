@@ -121,16 +121,6 @@ client.connection.get do |conn|
 end
 ```
 
-`Client#run_request` points to `Faraday#run_request`. It takes hash since I can never remember the order in which to pass the arguments.
-
-```ruby
-path = "https://graph.facebook.com/cocacola"
-client.run_request(verb: :get, path: path, body: nil, header: nil)
-
-# same as
-client.connection.run_request(:get, path, nil, nil)
-```
-
 ## Plugins
 
 Since various OAuth2 providers differ in their implementation, OpenAuth2 provides a simple plugin system to accomodate the differences, rather than 'one shoe fits all' approach. Facebook and Google plugins are builtin, but it is trivial to add new ones.
