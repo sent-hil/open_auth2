@@ -23,22 +23,6 @@ module OpenAuth2
       def parse(response_body)
         response_body
       end
-
-      private
-
-      # Abstracts out POST, PUT requests.
-      def request(verb, hash)
-        access_token = hash.delete(:access_token) || config.access_token
-
-        hash[:connection].send(verb) do |conn|
-          if hash[:content_type]
-            conn.headers["Content-Type"] = hash[:content_type]
-          end
-
-          conn.url(hash[:path], :access_token => access_token)
-          conn.body = hash[:body]
-        end
-      end
     end
   end
 end

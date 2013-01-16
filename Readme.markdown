@@ -129,10 +129,8 @@ There are only four requirements:
 
   1. Should be under right namespace (OpenAuth2::Provider)
   1. Can contain #options method
-  1. Can contain #parse method
-  1. Can contain #post method
 
-To use the plugin, call `Config#provider=` with name of the provider. OpenAuth2 upcases and camelizes the name and looks for the constant under OpenAuth2::Provider namespace.
+To use the plugin, call `Config#provider=` with name of the provider.
 
 ### Plugin Example
 
@@ -159,23 +157,6 @@ module OpenAuth2
       def parse(token_body)
         token = response_body.gsub('access_token=', '')
         config.access_token = token
-      end
-
-      # Accepts:
-      #   Hash
-      #     connection - Faraday object. Provided by default.
-      #
-      def post(hash)
-        access_token = hash.delete(:access_token) || config.access_token
-
-        hash[:connection].post do |conn|
-          if hash[:content_type]
-            conn.headers["Content-Type"] = hash[:content_type]
-          end
-
-          conn.url(hash[:path], :access_token => access_token)
-          conn.body = hash[:body]
-        end
       end
     end
   end
