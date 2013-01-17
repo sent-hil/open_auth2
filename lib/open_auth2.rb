@@ -15,6 +15,7 @@ require_relative 'open_auth2/config'
 require_relative 'open_auth2/token'
 require_relative 'open_auth2/client'
 require_relative 'open_auth2/connection'
+require_relative 'open_auth2/response'
 
 require_relative 'open_auth2/version'
 

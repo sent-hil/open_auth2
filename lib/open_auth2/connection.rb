@@ -11,7 +11,7 @@ module OpenAuth2
     end
 
     def fetch
-      connection.send(verb) do |conn|
+      response = connection.send(verb) do |conn|
         conn.url url
         conn.headers = headers
         conn.body = body
@@ -20,6 +20,8 @@ module OpenAuth2
           conn.params[key] = value
         end
       end
+
+      Response.new(response).parse
     end
 
     def connection
