@@ -1,24 +1,16 @@
 require 'spec_helper'
 
 describe 'Facebook Token' do
-  let(:config) do
-    facebook_config
-  end
-
-  subject do
-    OpenAuth2::Token.new(config)
-  end
+  subject {OpenAuth2::Token.new(facebook_config)}
 
   context '#build_code_url' do
     it 'returns url' do
       url = "https://www.facebook.com/dialog/oauth?response_type=code&client_id=369754433115833&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F&scope=offline_access%2Cpublish_stream"
-
       subject.build_code_url.should == url
     end
 
     it 'accepts params' do
       url = "https://www.facebook.com/dialog/oauth?response_type=code&client_id=369754433115833&redirect_uri=http%3A%2F%2Flocalhost%3A9393%2F&scope=publish_stream"
-
       subject.build_code_url(:scope => 'publish_stream').should == url
     end
   end
@@ -30,9 +22,7 @@ describe 'Facebook Token' do
       end
     end
 
-    let(:time) do
-      Time.local(2012, 12, 21)
-    end
+    let(:time) {Time.local(2012, 12, 21)}
 
     before do
       Timecop.freeze(time) do
@@ -67,7 +57,7 @@ describe 'Facebook Token' do
 
   context '#refresh' do
     let(:refresh_token) do
-      config.refresh_token = Creds['Facebook']['AccessToken']
+      facebook_config.refresh_token = Creds['Facebook']['AccessToken']
 
       VCR.use_cassette('facebook/refresh_token') do
         subject.refresh

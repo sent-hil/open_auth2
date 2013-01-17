@@ -3,22 +3,18 @@ require 'spec_helper'
 describe OpenAuth2::Client do
   let(:config) do
     OpenAuth2::Config.new do |c|
-      c.provider     = OpenAuth2::Provider::Facebook
+      c.provider = OpenAuth2::Provider::Facebook
       c.access_token = :access_token
     end
   end
 
-  subject do
-    described_class.new(config)
-  end
+  subject {described_class.new(config)}
 
   context '#initialize' do
     it 'accepts config as an argument' do
       subject.config.should == config
     end
   end
-
-  subject { described_class.new(config) }
 
   context OpenAuth2::DelegateToConfig do
     it 'delegates Options getter methods' do
@@ -28,7 +24,6 @@ describe OpenAuth2::Client do
     it 'delegates Options setter methods' do
       url = 'http://facebook.com'
       subject.authorize_url = url
-
       subject.authorize_url.should == url
     end
 
@@ -48,7 +43,6 @@ describe OpenAuth2::Client do
     it 'makes public request' do
       VCR.use_cassette('facebook/cocacola') do
         url = 'https://graph.facebook.com/cocacola'
-
         request = subject.get(url)
         request.status.should == 200
       end
@@ -56,9 +50,7 @@ describe OpenAuth2::Client do
 
     it 'makes private request' do
       VCR.use_cassette('facebook/me') do
-        at = "?access_token=#{Creds['Facebook']['AccessToken']}"
-        path = "https://graph.facebook.com/me/likes"
-        url = path + at
+        url = "https://graph.facebook.com/me/likes?access_token=#{Creds['Facebook']['AccessToken']}"
         request = subject.get(url)
         request.status.should == 200
       end

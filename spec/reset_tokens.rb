@@ -12,17 +12,17 @@ if ENV['RESET_TOKENS']
 
     it 'Facebook' do
       config = OpenAuth2::Config.new do |c|
-        c.provider       = OpenAuth2::Provider::Facebook
-        c.client_id      = Creds['Facebook']['ClientId']
-        c.client_secret  = Creds['Facebook']['ClientSecret']
-        c.code           = Creds['Facebook']['Code']
-        c.access_token   = Creds['Facebook']['AccessToken']
-        c.redirect_uri   = 'http://localhost:9393/'
-        c.scope          = ['publish_stream']
+        c.provider = OpenAuth2::Provider::Facebook
+        c.client_id = Creds['Facebook']['ClientId']
+        c.client_secret = Creds['Facebook']['ClientSecret']
+        c.code = Creds['Facebook']['Code']
+        c.access_token = Creds['Facebook']['AccessToken']
+        c.redirect_uri = 'http://localhost:9393/'
+        c.scope = ['publish_stream']
       end
 
       client = OpenAuth2::Client.new(config)
-      url    = client.build_code_url
+      url = client.build_code_url
       token  = client.token
 
       response = visit('https://www.facebook.com/')

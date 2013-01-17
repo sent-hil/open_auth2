@@ -1,13 +1,7 @@
 require 'spec_helper'
 
 describe 'Google Token' do
-  let(:config) do
-    google_config
-  end
-
-  subject do
-    OpenAuth2::Token.new(config)
-  end
+  subject {OpenAuth2::Token.new(google_config)}
 
   context '#build_code_url' do
     it 'returns url' do
@@ -25,9 +19,7 @@ describe 'Google Token' do
       end
     end
 
-    let(:time) do
-      Time.local(2012, 12, 21)
-    end
+    let(:time) {Time.local(2012, 12, 21)}
 
     before do
       Timecop.freeze(time) do
@@ -58,7 +50,7 @@ describe 'Google Token' do
 
   context '#refresh' do
     let(:refresh_token) do
-      config.refresh_token = Creds['Google']['RefreshToken']
+      google_config.refresh_token = Creds['Google']['RefreshToken']
 
       VCR.use_cassette('goog/refresh_token') do
         subject.refresh
