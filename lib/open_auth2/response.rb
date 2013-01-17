@@ -11,10 +11,12 @@ module OpenAuth2
         :status => response.status,
         :body => response.body,
         :headers => response.headers,
-        :request => {
-          :url => response.env[:url],
+        :request => nil)
+
+      result.request = OpenStruct.new(
+          :url => response.env[:url].to_s,
           :headers => response.env[:request_headers]
-      })
+      )
 
       result
     end
